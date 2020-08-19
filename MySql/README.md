@@ -33,6 +33,7 @@ COMMENT = 'tabla de registro de motos de la tienda';
 ```
 
 ##### Tabla de clientes
+```MySQL
 CREATE TABLE `tienda_motos`.`cliente` (
   `cedula` INT NOT NULL,
   `nombre` VARCHAR(50) NOT NULL,
@@ -48,9 +49,10 @@ CREATE TABLE `tienda_motos`.`cliente` (
     REFERENCES `tienda_motos`.`moto` (`idmoto`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
-
+```
 
 ##### Tabla de usuarios
+```MySQL
 CREATE TABLE `tienda_motos`.`usuario` (
   `cedula` INT NOT NULL,
   `nombre` VARCHAR(45) NULL,
@@ -60,3 +62,4 @@ CREATE TABLE `tienda_motos`.`usuario` (
   `telefono` INT NULL,
   `cargo` VARCHAR(45) NULL,
   PRIMARY KEY (`cedula`));
+ ```
