@@ -24,7 +24,7 @@ public class ConexionDB {
 
     private static Connection connection;
 
-    private ConexionDB(){
+    ConexionDB(){
     }
 
     public static Connection getConnection(){
