@@ -10,9 +10,25 @@ package Logica;
  * @author thord
  */
 public class Usuario {
+    int cedula;
     String nombre;
-    String contrasena;
+    String correo;
     String cargo;
+    String username;
+    String password;
+    int telefono;
+
+    public Usuario() {
+    }
+    
+    
+    public int getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
+    }
 
     public String getNombre() {
         return nombre;
@@ -22,12 +38,12 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getCargo() {
@@ -37,6 +53,32 @@ public class Usuario {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+  
+
     
     
 }

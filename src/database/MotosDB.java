@@ -34,7 +34,7 @@ public class MotosDB {
                 + " cilindraje,"
                 + " categoria,"
                 + " cantidad "
-                + " FROM Moto "
+                + " FROM tienda_moto.moto "
                 + " WHERE idmoto = ? ");
         pstm.setInt(1, id);
 
@@ -47,7 +47,7 @@ public class MotosDB {
     }
 
     /**
-     * trae todos los registros de la tabla contactos
+     * trae todos los registros de la tabla Moto
      */
     public ResultSet getMoto() throws SQLException {
         PreparedStatement pstm = cn.getConnection().prepareStatement("SELECT "
@@ -62,7 +62,7 @@ public class MotosDB {
                 + " cilindraje,"
                 + " categoria,"
                 + " cantidad "
-                + " FROM Moto "
+                + " FROM tienda_moto.moto "
                 + " ORDER BY marca, linea, modelo ");
 
 
@@ -144,7 +144,7 @@ public class MotosDB {
     public void borrarMoto(Motos m) {
 
         try {
-            PreparedStatement pstm = cn.getConnection().prepareStatement("delete from moto "
+            PreparedStatement pstm = cn.getConnection().prepareStatement("delete from tienda_moto.moto "
                     + " where idmoto = ?");
 
             pstm.setInt(1, m.getIdMoto());
@@ -157,8 +157,8 @@ public class MotosDB {
 
 
     }
-    /*
+    
     public String getMensaje() {
         return cn.getMensaje();
-    }*/
+    }
 }

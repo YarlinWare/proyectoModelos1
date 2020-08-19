@@ -13,7 +13,7 @@ import java.sql.SQLException;
  * @author ASUS
  */
 public class ConexionDB {
-    static String url = "jdbc:mysql://tiendademotos.csvkszv7bls2.us-east-1.rds.amazonaws.com:3306/tienda_demotos";
+    static String url = "jdbc:mysql://tiendademotos.csvkszv7bls2.us-east-1.rds.amazonaws.com:3306/tienda_motos";
     static String mensaje = "";
 
     static String dbName = System.getenv("tienda_motos");
@@ -24,7 +24,7 @@ public class ConexionDB {
 
     private static Connection connection;
 
-    private ConexionDB(){
+    ConexionDB(){
     }
 
     public static Connection getConnection(){
@@ -35,18 +35,17 @@ public class ConexionDB {
                 connection = DriverManager.getConnection(url,userName,password);
                 System.out.println("Se genera la conexión");
             }
-            return connection;
             /* Opción 2 */
             // if (connection == null) {
-                // Runtime.getRuntime().addShutdownHook(new getClose());
-                // Class.forName("com.mysql.jdbc.Driver");
-                // String jdbcUrl = "jdbc:mysql://" + hostname + ":" + port + "/" 
-                //                  + dbName + "?user=" + userName
-                //                  + "&password=" + password;
-                // connection = DriverManager.getConnection(jdbcUrl);
-                // System.out.println("Se genera la conexión");
+            //     Runtime.getRuntime().addShutdownHook(new getClose());
+            //     Class.forName("com.mysql.jdbc.Driver");
+            //     String jdbcUrl = "jdbc:mysql://" + hostname + ":" + port + "/" 
+            //                       + dbName + "?user=" + userName
+            //                       + "&password=" + password;
+            //     connection = DriverManager.getConnection(jdbcUrl);
+            //     System.out.println("Se genera la conexión");
             // }
-            // return connection;
+            return connection;
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException("Conexión fallida", e);
         }
@@ -62,5 +61,36 @@ public class ConexionDB {
                 throw new RuntimeException(ex);
             }
         }
+    }
+    
+    /**
+     * Metodo para retornar mensajes de control
+     * @return 
+     */
+    public static String getMensaje() {
+        return mensaje;
+    }
+    
+    /**
+     * Metodo para setear mensajes de control
+     * @param mensaje 
+     */
+    public static void setMensaje(String mensaje) {
+        ConexionDB.mensaje = mensaje;
+    }
+     
+    /**
+     * metodo que retorna la conexion a la bd
+     * @return 
+     */
+    public Connection getConexion(){
+        return connection;
+    }
+
+    /**
+     * metodo que desconecta la base de datos
+     */
+    public void desconectar(){
+        connection = null;
     }
 }
