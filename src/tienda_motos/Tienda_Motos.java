@@ -5,17 +5,19 @@
  */
 package tienda_motos;
 
+import database.Conexion;
+import database.ConexionDB;
 /**
  *
  * @author thord
  */
 public class Tienda_Motos {
-
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        ConexionDB condb = (ConexionDB) ConexionDB.getConnection();
+        System.out.println(condb);
     }
     
 }
