@@ -5,25 +5,25 @@
  */
 package database;
 
+import Logica.Cliente;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import Logica.Usuario;
 /**
  *
  * @author ASUS
  */
-public class UsuarioDB {
+public class ClienteDB {
     ConexionDB cn;
     
-    public UsuarioDB() {
+    public ClienteDB() {
         //cn = new ConexionDB();
     }
 
-    public ResultSet getUsuarioById(int id) throws SQLException {
+    public ResultSet getClienteById(int id) throws SQLException {
         PreparedStatement pstm = cn.getConnection().prepareStatement("SELECT * "
-                + " FROM tienda_moto.usuario "
+                + " FROM tienda_moto.cliente "
                 + " WHERE cedula = ? ");
         pstm.setInt(1, id);
 
@@ -36,41 +36,41 @@ public class UsuarioDB {
     }
 
     /**
-     * trae todos los registros de la tabla Usuario
+     * trae todos los registros de la tabla Cliente
      */
-    public ResultSet getUsuario() throws SQLException {
+    public ResultSet getCliente() throws SQLException {
         PreparedStatement pstm = cn.getConnection().prepareStatement("SELECT "
                 + " cedula, "
                 + " nombre, "
-                + " correo, "
-                + " usuario, "
-                + " password, "
                 + " telefono, "
-                + " cargo "
-                + " FROM tienda_moto.usuario "
-                + " ORDER BY nombre, usuario");
+                + " correo, "
+                + " direccion, "
+                + " fecha_nac, "
+                + " id_moto "
+                + " FROM tienda_moto.cliente "
+                + " ORDER BY nombre, cedula");
 
 
         ResultSet res = pstm.executeQuery();
         return res;
     }
 
-    public void insertarUsuario(Usuario m) {
+    public void insertarCliente(Cliente m) {
         try {
-            PreparedStatement pstm = cn.getConnection().prepareStatement("insert into tienda_moto.usuario "
+            PreparedStatement pstm = cn.getConnection().prepareStatement("insert into tienda_moto.cliente "
                     + "(nombre, "
-                    + " correo,"
-                    + " usuario,"
-                    + " password,"
-                    + " telefono,"
-                    + " cargo) "
+                    + " telefono, "
+                    + " correo, "
+                    + " direccion, "
+                    + " fecha_nac, "
+                    + " id_moto) "
                     + " values(?,?,?,?,?,?)");
             pstm.setString(1, m.getNombre());
-            pstm.setString(2, m.getCorreo());
-            pstm.setString(3, m.getUsername());
-            pstm.setString(4, m.getPassword());
-            pstm.setInt(5, m.getTelefono());
-            pstm.setString(6, m.getCargo());
+            pstm.setInt(2, m.getTelefono());
+            pstm.setString(3, m.getCorreo());
+            pstm.setString(4, m.getDireccion());
+            pstm.setString(5, m.getFecha_nacimiento());
+            pstm.setInt(6, m.getId_moto());
 
             pstm.executeUpdate();
 
@@ -80,23 +80,23 @@ public class UsuarioDB {
 
     }
     
-    public void actualizarUsuario(Usuario m) {
+    public void actualizarCliente(Cliente m) {
 
         try {            
             PreparedStatement pstm = cn.getConnection().prepareStatement("update tienda_moto.usuario set "
                     + " nombre = ?, "
-                    + " correo = ?,"
-                    + " usuario = ?,"
-                    + " password = ?,"
                     + " telefono = ?,"
-                    + " cargo = ?"
+                    + " correo = ?,"
+                    + " direccion = ?,"
+                    + " fech_nac = ?,"
+                    + " id_moto = ?"
                     + " where cedula = ?");
             pstm.setString(1, m.getNombre());
-            pstm.setString(2, m.getCorreo());
-            pstm.setString(3, m.getUsername());
-            pstm.setString(4, m.getPassword());
-            pstm.setInt(5, m.getTelefono());
-            pstm.setString(6, m.getCargo());
+            pstm.setInt(2, m.getTelefono());
+            pstm.setString(3, m.getCorreo());
+            pstm.setString(4, m.getDireccion());
+            pstm.setString(5, m.getFecha_nacimiento());
+            pstm.setInt(6, m.getId_moto());
             pstm.setInt(7, m.getCedula());
             
             
@@ -110,10 +110,10 @@ public class UsuarioDB {
 
     }
 
-    public void borrarUsuario(Usuario m) {
+    public void borrarCliente(Cliente m) {
 
         try {
-            PreparedStatement pstm = cn.getConnection().prepareStatement("delete from tienda_moto.usuario "
+            PreparedStatement pstm = cn.getConnection().prepareStatement("delete from tienda_moto.cliente "
                     + " where cedula = ?");
 
             pstm.setInt(1, m.getCedula());
