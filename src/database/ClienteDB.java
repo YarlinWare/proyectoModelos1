@@ -15,7 +15,7 @@ import java.sql.SQLException;
  * @author ASUS
  */
 public class ClienteDB {
-    ConexionDB cn;
+    ConexionDB cn = ConexionDB.getInstance();
     
     public ClienteDB() {
         //cn = new ConexionDB();
@@ -49,7 +49,6 @@ public class ClienteDB {
                 + " id_moto "
                 + " FROM tienda_moto.cliente "
                 + " ORDER BY nombre, cedula");
-
 
         ResultSet res = pstm.executeQuery();
         return res;

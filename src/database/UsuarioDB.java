@@ -15,7 +15,7 @@ import Logica.Usuario;
  * @author ASUS
  */
 public class UsuarioDB {
-    ConexionDB cn;
+    ConexionDB cn = ConexionDB.getInstance();
     
     public UsuarioDB() {
         //cn = new ConexionDB();

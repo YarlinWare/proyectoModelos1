@@ -9,13 +9,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import Logica.Motos;
+import java.sql.Statement;
 
 /**
  *
  * @author ASUS
  */
 public class MotosDB {
-    ConexionDB cn;
+    ConexionDB cn = ConexionDB.getInstance();
+    Statement state = ConexionDB.getStatement();
     
     public MotosDB() {
         //cn = new ConexionDB();
