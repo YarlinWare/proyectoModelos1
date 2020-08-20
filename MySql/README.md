@@ -50,6 +50,11 @@ CREATE TABLE `tienda_motos`.`cliente` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 ```
+| **cédula** | **nombre** | **teléfono** | **correo** | **dirección** | **fecha nacimiento** | **ID moto** |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| 1111111  | Carlos Antonio  | 9876543  | cantonio@gmail.com | Av. Siempre viva #123  | 1980-06-06  | NULL  |
+| 2222222  | Celeste Pardo  | 9876544  | cpardo@gmail.com | Av. la libertad #123  | 1990-06-06  | NULL  |
+| 3333333  | Andrés Castillo  | 8776544  | acastillo@gmail.com | Av. La Esperanza #123  | 1997-06-06  | NULL  |
 
 ##### Tabla de usuarios
 ```MySQL
@@ -63,3 +68,8 @@ CREATE TABLE `tienda_motos`.`usuario` (
   `cargo` VARCHAR(45) NULL,
   PRIMARY KEY (`cedula`));
  ```
+
+| **cédula** | **nombre** | **correo** | **usuario** | **password** | **teléfono** | **cargo** |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| 1024987654  | Miguel Angel Asturias  | mangela@gmail.com | mangela  | admin123  | 7654321  | Gerente  |
+
