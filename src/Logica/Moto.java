@@ -10,5 +10,27 @@ package Logica;
  * @author thord
  */
 public abstract class Moto {
+    String marca;
+    String linea;
+    String modelo;
+    String imagen;
+    String color;
+    double precio;
+    String descripcion;
+    int cilindraje;
+    String categoria;
+    int cantidad;
+
+//  + " idmoto, "
+//                + " marca, "
+//                + " linea, "
+//                + " modelo, "
+//                + " imagen, "
+//                + " color, "
+//                + " precio,"
+//                + " descripcion,"
+//                + " cilindraje,"
+//                + " categoria,"
+//                + " cantidad "  
     
 }
