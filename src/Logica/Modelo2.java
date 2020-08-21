@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author thord
  */
-public class Modelo {
+public class Modelo2 {
 
     Usuario usuario;
     ArrayList catalogo;

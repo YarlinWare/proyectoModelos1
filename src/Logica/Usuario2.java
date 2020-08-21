@@ -9,7 +9,7 @@ package Logica;
  *
  * @author thord
  */
-public class Usuario {
+public class Usuario2 {
     String nombre;
     String contrasena;
     String cargo;
