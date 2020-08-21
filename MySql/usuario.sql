@@ -1,0 +1,1 @@
+INSERT INTO `tienda_motos`.`usuario` (`cedula`, `nombre`, `correo`, `usuario`, `password`, `telefono`, `cargo`) VALUES ('1024987654', 'Miguel Angel Asturias', 'mangela@gmail.com', 'mangela', 'admin123', '7654321', 'Gerente');
