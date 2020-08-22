@@ -38,7 +38,7 @@ public class VistaMotoCatalogo extends VistaMoto {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 404, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

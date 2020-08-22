@@ -10,20 +10,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import Logica.Usuario;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.sql.Connection;
 /**
  *
  * @author ASUS
  */
 public class UsuarioDB {
-    ConexionDB cn = ConexionDB.getInstance();
+    Connection cn = ConexionDB.getConnection();
     
     public UsuarioDB() {
         //cn = new ConexionDB();
     }
 
     public ResultSet getUsuarioById(int id) throws SQLException {
-        PreparedStatement pstm = cn.getConnection().prepareStatement("SELECT * "
-                + " FROM tienda_moto.usuario "
+        PreparedStatement pstm = cn.prepareStatement("SELECT * "
+                + " FROM usuario "
                 + " WHERE cedula = ? ");
         pstm.setInt(1, id);
 
@@ -39,7 +42,7 @@ public class UsuarioDB {
      * trae todos los registros de la tabla Usuario
      */
     public ResultSet getUsuario() throws SQLException {
-        PreparedStatement pstm = cn.getConnection().prepareStatement("SELECT "
+        PreparedStatement pstm = cn.prepareStatement("SELECT "
                 + " cedula, "
                 + " nombre, "
                 + " correo, "
@@ -47,7 +50,7 @@ public class UsuarioDB {
                 + " password, "
                 + " telefono, "
                 + " cargo "
-                + " FROM tienda_moto.usuario "
+                + " FROM usuario "
                 + " ORDER BY nombre, usuario");
 
 
@@ -55,27 +58,36 @@ public class UsuarioDB {
         return res;
     }
 
-    public void insertarUsuario(Usuario m) {
+    public String insertarUsuario(long cedula, String nombre, String correo, String cargo, String userName, char[] password, long telefono) {
         try {
-            PreparedStatement pstm = cn.getConnection().prepareStatement("insert into tienda_moto.usuario "
-                    + "(nombre, "
+            String password1 = "";
+            for(int x = 0; x<password.length; x++){
+                password1 += password[x];
+            }
+            PreparedStatement pstm = cn.prepareStatement("insert into usuario "
+                    + "(cedula, "
+                    + " nombre,"
                     + " correo,"
                     + " usuario,"
                     + " password,"
                     + " telefono,"
                     + " cargo) "
-                    + " values(?,?,?,?,?,?)");
-            pstm.setString(1, m.getNombre());
-            pstm.setString(2, m.getCorreo());
-            pstm.setString(3, m.getUsername());
-            pstm.setString(4, m.getPassword());
-            pstm.setInt(5, m.getTelefono());
-            pstm.setString(6, m.getCargo());
+                    + " values(?,?,?,?,?,?,?)");
+            pstm.setLong(1, cedula);
+            pstm.setString(2, nombre);
+            pstm.setString(3, correo);
+            pstm.setString(4, userName);
+            pstm.setString(5, password1);
+            pstm.setLong(6, telefono);
+            pstm.setString(7, cargo);
 
             pstm.executeUpdate();
-
+            System.out.println("Usuario registrado");
+            return "true";
         } catch (SQLException e) {
             System.out.println(e);
+            return e.getMessage();
+            
         }
 
     }
@@ -83,7 +95,7 @@ public class UsuarioDB {
     public void actualizarUsuario(Usuario m) {
 
         try {            
-            PreparedStatement pstm = cn.getConnection().prepareStatement("update tienda_moto.usuario set "
+            PreparedStatement pstm = cn.prepareStatement("update usuario set "
                     + " nombre = ?, "
                     + " correo = ?,"
                     + " usuario = ?,"
@@ -113,7 +125,7 @@ public class UsuarioDB {
     public void borrarUsuario(Usuario m) {
 
         try {
-            PreparedStatement pstm = cn.getConnection().prepareStatement("delete from tienda_moto.usuario "
+            PreparedStatement pstm = cn.prepareStatement("delete from usuario "
                     + " where cedula = ?");
 
             pstm.setInt(1, m.getCedula());
@@ -127,7 +139,5 @@ public class UsuarioDB {
 
     }
     
-    public String getMensaje() {
-        return cn.getMensaje();
-    }
+    
 }

@@ -10,35 +10,40 @@ import Controlador.Controlador;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+
 /**
  *
  * @author thord
  */
 public class VentanaMenu extends javax.swing.JFrame {
+
     private Modelo modelo;
     private Controlador control;
+
     /**
      * Creates new form Menu
      */
     public VentanaMenu(Modelo aThis) {
         initComponents();
+        this.modelo = aThis;
         eventos();
     }
-    
-    public void eventos(){
+
+    public void eventos() {
         jButtonComprar.addActionListener(getControl());
         jMenuItemIniciarSesion.addActionListener(getControl());
         jMenuItemCerrarSesion.addActionListener(getControl());
         jMenuItemModificarCatalogo.addActionListener(getControl());
         jMenuItemSalirApp.addActionListener(getControl());
+        jMenuItemRegistrarNuevoUsuario.addActionListener(getControl());
     }
-    
-    public Modelo getModelo(){
+
+    public Modelo getModelo() {
         return modelo;
     }
-    
-    public Controlador getControl(){
-        if(control == null){
+
+    public Controlador getControl() {
+        if (control == null) {
             this.control = new Controlador(this);
         }
         return control;
@@ -55,6 +60,16 @@ public class VentanaMenu extends javax.swing.JFrame {
     public JMenuItem getjMenuItemCerrarSesion() {
         return jMenuItemCerrarSesion;
     }
+
+    public JMenuItem getjMenuItemRegistrarNuevoUsuario() {
+        return jMenuItemRegistrarNuevoUsuario;
+    }
+
+    public void setjMenuItemRegistrarNuevoUsuario(JMenuItem jMenuItemRegistrarNuevoUsuario) {
+        this.jMenuItemRegistrarNuevoUsuario = jMenuItemRegistrarNuevoUsuario;
+    }
+    
+    
 
     public void setjMenuItemCerrarSesion(JMenuItem jMenuItemCerrarSesion) {
         this.jMenuItemCerrarSesion = jMenuItemCerrarSesion;
@@ -100,13 +115,13 @@ public class VentanaMenu extends javax.swing.JFrame {
         this.jPanelCatalogo = jPanelCatalogo;
     }
 
-    
-    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -126,13 +141,22 @@ public class VentanaMenu extends javax.swing.JFrame {
         jMenuItemIniciarSesion = new javax.swing.JMenuItem();
         jMenuItemCerrarSesion = new javax.swing.JMenuItem();
         jMenuItemSalirApp = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        jMenuRegistrarNuevoUsuario = new javax.swing.JMenu();
         jMenuItemModificarCatalogo = new javax.swing.JMenuItem();
+        jMenuItemRegistrarNuevoUsuario = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+
+        jMenu4.setText("File");
+        jMenuBar2.add(jMenu4);
+
+        jMenu5.setText("Edit");
+        jMenuBar2.add(jMenu5);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanelCatalogo.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanelCatalogo.setBackground(new java.awt.Color(255, 255, 255));
         jPanelCatalogo.setPreferredSize(new java.awt.Dimension(845, 470));
 
         javax.swing.GroupLayout jPanelCatalogoLayout = new javax.swing.GroupLayout(jPanelCatalogo);
@@ -175,6 +199,9 @@ public class VentanaMenu extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Catalogo", jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanelCarritoCompra.setBackground(new java.awt.Color(255, 255, 255));
         jPanelCarritoCompra.setPreferredSize(new java.awt.Dimension(840, 438));
 
         javax.swing.GroupLayout jPanelCarritoCompraLayout = new javax.swing.GroupLayout(jPanelCarritoCompra);
@@ -245,12 +272,15 @@ public class VentanaMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu3.setText("Herramientas");
+        jMenuRegistrarNuevoUsuario.setText("Herramientas");
 
         jMenuItemModificarCatalogo.setText("Modificar catalogo");
-        jMenu3.add(jMenuItemModificarCatalogo);
+        jMenuRegistrarNuevoUsuario.add(jMenuItemModificarCatalogo);
 
-        jMenuBar1.add(jMenu3);
+        jMenuItemRegistrarNuevoUsuario.setText("Registrar nuevo usuario");
+        jMenuRegistrarNuevoUsuario.add(jMenuItemRegistrarNuevoUsuario);
+
+        jMenuBar1.add(jMenuRegistrarNuevoUsuario);
 
         jMenu2.setText("Ayuda");
         jMenuBar1.add(jMenu2);
@@ -293,7 +323,6 @@ public class VentanaMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonComprar;
@@ -305,12 +334,16 @@ public class VentanaMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItemCerrarSesion;
     private javax.swing.JMenuItem jMenuItemIniciarSesion;
     private javax.swing.JMenuItem jMenuItemModificarCatalogo;
+    private javax.swing.JMenuItem jMenuItemRegistrarNuevoUsuario;
     private javax.swing.JMenuItem jMenuItemSalirApp;
+    private javax.swing.JMenu jMenuRegistrarNuevoUsuario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelCarritoCompra;
