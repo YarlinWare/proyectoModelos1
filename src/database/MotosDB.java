@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import Logica.Motos;
+import java.sql.Connection;
 import java.sql.Statement;
 
 /**
@@ -16,15 +17,15 @@ import java.sql.Statement;
  * @author ASUS
  */
 public class MotosDB {
-    ConexionDB cn = ConexionDB.getInstance();
-    Statement state = ConexionDB.getStatement();
+    Connection cn = ConexionDB.getConnection();
     
     public MotosDB() {
         //cn = new ConexionDB();
     }
 
     public ResultSet getMotoById(int id) throws SQLException {
-        PreparedStatement pstm = cn.getConnection().prepareStatement("SELECT "
+//        PreparedStatement pstm = ConexionDB.getConnection();
+        PreparedStatement pstm = cn.prepareStatement("SELECT "
                 + " idmoto, "
                 + " marca, "
                 + " linea, "
@@ -36,7 +37,7 @@ public class MotosDB {
                 + " cilindraje,"
                 + " categoria,"
                 + " cantidad "
-                + " FROM tienda_moto.moto "
+                + " FROM moto "
                 + " WHERE idmoto = ? ");
         pstm.setInt(1, id);
 
@@ -52,7 +53,7 @@ public class MotosDB {
      * trae todos los registros de la tabla Moto
      */
     public ResultSet getMoto() throws SQLException {
-        PreparedStatement pstm = cn.getConnection().prepareStatement("SELECT "
+        PreparedStatement pstm = cn.prepareStatement("SELECT "
                 + " idmoto, "
                 + " marca, "
                 + " linea, "
@@ -64,7 +65,7 @@ public class MotosDB {
                 + " cilindraje,"
                 + " categoria,"
                 + " cantidad "
-                + " FROM tienda_moto.moto "
+                + " FROM moto"
                 + " ORDER BY marca, linea, modelo ");
 
 
@@ -74,7 +75,7 @@ public class MotosDB {
 
     public void insertarMoto(Motos m) {
         try {
-            PreparedStatement pstm = cn.getConnection().prepareStatement("insert into tienda_moto.moto "
+            PreparedStatement pstm = cn.prepareStatement("insert into moto "
                     + "(marca, "
                     + " linea,"
                     + " modelo,"
@@ -109,7 +110,7 @@ public class MotosDB {
     public void actualizarMoto(Motos m) {
 
         try {            
-            PreparedStatement pstm = cn.getConnection().prepareStatement("update tienda_moto.moto set "
+            PreparedStatement pstm = cn.prepareStatement("update moto set "
                     + " marca = ?, "
                     + " linea = ?,"
                     + " modelo = ?,"
@@ -146,7 +147,7 @@ public class MotosDB {
     public void borrarMoto(Motos m) {
 
         try {
-            PreparedStatement pstm = cn.getConnection().prepareStatement("delete from tienda_moto.moto "
+            PreparedStatement pstm = cn.prepareStatement("delete from moto "
                     + " where idmoto = ?");
 
             pstm.setInt(1, m.getIdMoto());
@@ -160,7 +161,5 @@ public class MotosDB {
 
     }
     
-    public String getMensaje() {
-        return cn.getMensaje();
-    }
+    
 }

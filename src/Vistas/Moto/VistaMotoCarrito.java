@@ -7,6 +7,8 @@ package Vistas.Moto;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Point;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -17,7 +19,9 @@ import javax.swing.border.Border;
  * @author thord
  */
 public class VistaMotoCarrito extends VistaMoto {
+
     private JButton jButtonEliminarMoto;
+
     /**
      * Creates new form VistaMotoCarrito
      */
@@ -25,33 +29,69 @@ public class VistaMotoCarrito extends VistaMoto {
         super();
         configuracion();
         eventos();
-        
+
     }
-    
+
     private void configuracion() {
         setSize(new Dimension(845, 200));
-        jPanel1.setLayout(null);
-        jLabelTituloMoto.setBounds(10, 10, 100, 10);
-        Border border = BorderFactory.createLineBorder(Color.BLUE, 5);
-        jLabelImagenMoto.setBorder(border);
-        jLabelImagenMoto.setBounds(615,5,200,165);
-        jButtonModificarMoto.setBounds(10,140,100,30);
-        jButtonEliminarMoto = new JButton("Eliminar");
-        jPanel1.add(jButtonEliminarMoto);
-        jButtonEliminarMoto.setBounds(140,140,100,30);
-        jLabelDescripcionMoto.setBorder(border);
-        jLabelDescripcionMoto.setBounds(10,30,600,100);
+        this.jPanel1.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL; //BOTH
+        this.jPanel1.add(jScrollPaneTitulo, gbc);
         
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 2;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        this.jPanel1.add(jPanelImagen, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.jPanel1.add(jScrollPaneDescripcion, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        this.jPanel1.add(jPanelBotones, gbc);
+
+//        jLabelTituloMoto.setBounds(10, 10, 100, 10);
+//        Border border = BorderFactory.createLineBorder(Color.BLUE, 5);
+//        jLabelImagenMoto.setBorder(border);
+//        jLabelImagenMoto.setBounds(615, 5, 200, 165);
+//        jButtonModificarMoto.setBounds(10, 140, 100, 30);
+//        jButtonEliminarMoto = new JButton("Eliminar");
+//        jPanel1.add(jButtonEliminarMoto);
+//        jButtonEliminarMoto.setBounds(140, 140, 100, 30);
+//        jLabelDescripcionMoto.setBorder(border);
+//        jLabelDescripcionMoto.setBounds(10, 30, 600, 100);
+
 //        this.jLabelTituloMoto.setSize(300, 300);
 //        jLabelImagenMoto.setText("Hola mudno");
 //        jLabelImagenMoto.setLocation(500, 500);
     }
-    private void eventos() {
-         //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
 
+    private void eventos() {
+        //To change body of generated methods, choose Tools | Templates.
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,9 +113,6 @@ public class VistaMotoCarrito extends VistaMoto {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

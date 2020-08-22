@@ -23,12 +23,12 @@ import javax.xml.bind.annotation.XmlElement;
 
 
 public class farbicaMotocicleta {
-    public static Motocicleta construir(String marca, String linea, String modelo,String color,int precio, String descipcion,int potencia,String tipo){
+    public static Motocicleta construir(int id,String marca, String linea, String modelo,String color,int precio, String descipcion,int potencia,String tipo,String imagen){
         switch(tipo){
-            case "gasolina":
-                return new MotocicletaGasolina(marca,linea,modelo,color,precio,descipcion,potencia);
-            case "electrica":
-                return new MotocicletaElectrica(marca,linea,modelo,color,precio,descipcion,potencia);
+            case "Gasolina":
+                return new MotocicletaGasolina(id,marca,linea,modelo,color,precio,descipcion,potencia,imagen);
+            case "Electrica":
+                return new MotocicletaElectrica(id,marca,linea,modelo,color,precio,descipcion,potencia,imagen);
             default:
                 return null;
         }

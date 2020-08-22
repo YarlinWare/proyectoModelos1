@@ -6,9 +6,12 @@
 package Controlador;
 
 import Logica.Modelo;
+import Vistas.IniciarSesion;
+import Vistas.RegistroUsuario;
 import Vistas.VentanaMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JMenuItem;
 
 /**
  *
@@ -27,7 +30,19 @@ public class Controlador implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+        System.out.println("modelo:" + modelo);
+        if(e.getSource() instanceof JMenuItem){
+            JMenuItem itemMenu = (JMenuItem)e.getSource();
+            if(itemMenu == ventana.getjMenuItemIniciarSesion()){
+                new IniciarSesion(ventana, true,modelo).setVisible(true);
+            }
+            
+            if(itemMenu == ventana.getjMenuItemRegistrarNuevoUsuario()){
+                
+                new RegistroUsuario(ventana, true,modelo).setVisible(true);
+            }
+            
+        }
     }
 
     private void desactivarOpciones() {

@@ -12,9 +12,18 @@ package Logica.fabrica;
 public class MotocicletaGasolina extends Motocicleta{
     int cilindraje;
 
-    public MotocicletaGasolina(String marca, String linea, String modelo,String color,int precio, String descipcion,int cilindraje) {
-        super(marca, linea, modelo, descipcion);
+    public MotocicletaGasolina(int id,String marca, String linea, String modelo,String color,int precio, String descipcion,int cilindraje,String imagen) {
+        super(id,marca, linea, modelo, descipcion, imagen);
         this.categoria = "Gasolina";
         this.cilindraje = cilindraje;
     }
+
+    public int getCilindraje() {
+        return cilindraje;
+    }
+
+    public void setCilindraje(int cilindraje) {
+        this.cilindraje = cilindraje;
+    }
+    
 }

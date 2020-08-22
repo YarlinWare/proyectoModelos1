@@ -10,15 +10,22 @@ package Logica;
  * @author thord
  */
 public class Usuario {
-    int cedula;
-    String nombre;
-    String correo;
-    String cargo;
-    String username;
-    String password;
-    int telefono;
+    private int cedula;
+    private String nombre;
+    private String correo;
+    private String cargo;
+    private String username;
+    private String password;
+    private int telefono;
 
-    public Usuario() {
+    public Usuario(int cedula,String nombre,String correo,String cargo,String userName,String password, int telefono) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.cargo = cargo;
+        this.username = userName;
+        this.password = password;
+        this.telefono = telefono;
     }
     
     
