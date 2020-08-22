@@ -72,4 +72,5 @@ CREATE TABLE `tienda_motos`.`usuario` (
 | **cédula** | **nombre** | **correo** | **usuario** | **password** | **teléfono** | **cargo** |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | 1024987654  | Miguel Angel Asturias  | mangela@gmail.com | mangela  | admin123  | 7654321  | Gerente  |
-
+| 1028988654  | Margarita Salazar  | msalazar@gmail.com | msalazar  | admin123  | 4654551  | Asesor Ventas  |
+| 1324686654  | Marco António  | mantonio@gmail.com | mantonio  | admin123  | 6654521  | Jefe  |
