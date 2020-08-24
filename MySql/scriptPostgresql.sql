@@ -35,3 +35,10 @@ CREATE TABLE usuario (
   telefono INTEGER NULL,
   cargo VARCHAR(45) NULL
   );
+
+ALTER TABLE cliente ADD CONSTRAINT "FK_id_usuario"
+	FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario) ON DELETE No Action ON UPDATE No Action
+;
+ALTER TABLE empleado ADD CONSTRAINT "FK_id_usuario"
+	FOREIGN KEY (id_usuario) REFERENCES usuario (id_usuario) ON DELETE No Action ON UPDATE No Action
+;

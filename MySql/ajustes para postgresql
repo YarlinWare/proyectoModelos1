@@ -1,0 +1,14 @@
+
+bd = tienda_motos
+login = postgres
+password = admin1234
+url = jdbc:postgresql://tiendamotospgs.csvkszv7bls2.us-east-1.rds.amazonaws.com:5432/tienda_motos
+
+
+Clase conexion
+Class.forName("org.postgresql.Driver");
+
+asesor ventas
+Jefe 
+
+`marca`, `linea`, `modelo`, `imagen`, `color`, `precio`, `descripcion`, `cilindraje`, `cantidad`, `categoria`
