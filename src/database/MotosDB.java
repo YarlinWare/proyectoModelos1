@@ -161,5 +161,16 @@ public class MotosDB {
 
     }
     
+    public ResultSet getColorMotoById(int id) throws SQLException {
+//        PreparedStatement pstm = ConexionDB.getConnection();
+        PreparedStatement pstm = cn.prepareStatement(""
+                + " SELECT c.color AS color FROM color AS c "
+                + " INNER JOIN motocolor AS mt ON (mt.idcolor = c.idcolor)"
+                + " WHERE mt.idmoto = ? ");
+        pstm.setInt(1, id);
+        ResultSet res = pstm.executeQuery();        
+        return res;
+    }
+    
     
 }

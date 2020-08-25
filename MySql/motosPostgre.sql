@@ -80,3 +80,20 @@ UPDATE moto SET imagen = '/img/Bajaj-Pulsar-ns160-negro.jpg' WHERE idmoto = 47;
 UPDATE moto SET imagen = '/img/Starker-Trotter-starker_trotter_blanco.jpg' WHERE idmoto = 48;
 UPDATE moto SET imagen = '/img/Starker-TCMax-tcmax.jpg' WHERE idmoto = 49;
 */
+
+
+INSERT INTO 
+moto (marca, linea, modelo, imagen, color, precio, descripcion, cilindraje, cantidad, categoria) 
+VALUES ('TVS', 'Apache RR 310', '2021', 
+		'/img/tvs-apache-310-black.png', 
+		'Blanco', '13000000',
+		'', 
+		'300 ', '150', 'Gasolina');
+
+INSERT INTO
+moto (marca, linea, modelo, imagen, color, precio, descripcion, cilindraje, cantidad, categoria)
+VALUES ('TVS', 'Apache RTR 200', '2021',
+		'/img/tvs-apache-rtr-200-4v.png',
+		'Rojo', '8090000',
+		'',
+		'197 ', '150', 'Gasolina');
