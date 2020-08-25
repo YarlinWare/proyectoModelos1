@@ -36,12 +36,9 @@ public class GenerarPDFDetallado extends DocumentoDetallado{
 
     @Override
     void generarDocumentoDetallado() {
-        try {
-            System.out.println("Generar documento simple");
-            Thread.sleep(2000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(GenerarPDFSimple.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        System.out.println("Generar documento simple");
+        
         List<Motos> listamotos = new ArrayList<Motos>();
         
         listamotos.add(new Motos(900, "Yamaha","FSZ","2021","Rojo"));
@@ -52,8 +49,6 @@ public class GenerarPDFDetallado extends DocumentoDetallado{
         
         System.out.println("Se encontraron "+listamotos.size()+" registros");
         
-       
-        Motos m = new Motos() {};
         MotosDB motosdb = new MotosDB();
         ResultSet res = null;
         
@@ -116,11 +111,7 @@ public class GenerarPDFDetallado extends DocumentoDetallado{
             tabla.addCell(String.valueOf(lista.get(i).getModelo()));
             tabla.addCell(String.valueOf(lista.get(i).getPrecio()));
         }
-        
-           
-        
-        
-        
+
         // Añadimos el titulo, arrafo y tabla al documento
         documento.add(titulo);
         documento.add(parrafo);
@@ -142,11 +133,6 @@ public class GenerarPDFDetallado extends DocumentoDetallado{
         documento.add(tabla);
         System.out.println("Se añade información de las motos almacenadas en la base de datos");
         
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(GenerarPDFSimple.class.getName()).log(Level.SEVERE, null, ex);
-        }
         // Se cierra el documento
         documento.close();        
         System.out.println("Se realiza el cierre del documento");

@@ -6,7 +6,8 @@
 package Vistas;
 
 import Controlador.ControladorIniciarSesion;
-import Logica.Modelo;
+import Logica.Observer.Modelo;
+import java.awt.event.WindowEvent;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -45,7 +46,10 @@ public class IniciarSesion extends javax.swing.JDialog {
     public void setjTextFieldUsuario(JTextField jTextFieldUsuario) {
         this.jTextFieldUsuario = jTextFieldUsuario;
     }
-    
+    public void cerrar() {
+        this.processWindowEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+    }
+
     
     
     public Modelo getModelo(){

@@ -6,7 +6,7 @@
 package Vistas;
 
 import Controlador.ControladorRegistroUsuario;
-import Logica.Modelo;
+import Logica.Observer.Modelo;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;

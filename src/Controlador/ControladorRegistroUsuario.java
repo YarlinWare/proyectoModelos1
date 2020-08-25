@@ -5,7 +5,7 @@
  */
 package Controlador;
 
-import Logica.Modelo;
+import Logica.Observer.Modelo;
 import Vistas.RegistroUsuario;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -86,25 +86,14 @@ public class ControladorRegistroUsuario implements ActionListener {
                     return;
                 }
                 long telefono = Long.parseLong(cadena);
-                String mensaje = modelo.registrarUsuario(cedula, nombre, email, cargo, userName, password2, telefono);
-                if (mensaje.equals("true")) {
-                    ventana.mensaje("Registrado.", "Exito!!", cargarImg("/img/exito.png"));
-                    ventana.cerrar();
-                } else {
-                    ventana.mensaje("No registrado.Error: " + mensaje, "Error!!!", cargarImg("/img/error.png"));
-                }
+                modelo.registrarUsuario(cedula, nombre, email, cargo, userName, password2, telefono);
+                
             }
 
         }
     }
 
-    public ImageIcon cargarImg(String url) {
-        Image imagenInterna = new ImageIcon(getClass().
-                getResource(url)).getImage();
-        Image newimg = imagenInterna.getScaledInstance(80, 80, Image.SCALE_SMOOTH); // scale it the smooth way
-        ImageIcon icon = new ImageIcon(newimg);
-        return icon;
-    }
+    
 
     public boolean passIguales(char[] pass1, char[] pass2) {
         for (int x = 0; x < pass1.length; x++) {

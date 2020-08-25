@@ -13,29 +13,36 @@ import Logica.Usuario;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Connection;
+
 /**
  *
  * @author ASUS
  */
 public class UsuarioDB {
+
     Connection cn = ConexionDB.getConnection();
-    
+
     public UsuarioDB() {
         //cn = new ConexionDB();
     }
 
-    public ResultSet getUsuarioById(int id) throws SQLException {
-        PreparedStatement pstm = cn.prepareStatement("SELECT * "
-                + " FROM usuario "
-                + " WHERE cedula = ? ");
-        pstm.setInt(1, id);
+    public ResultSet getUsuarioByUsuario(String usuario){
+        try {
+            PreparedStatement pstm = cn.prepareStatement("SELECT * "
+                    + " FROM usuario "
+                    + " WHERE usuario = ? ");
+            pstm.setString(1, usuario);
+            
 
-        ResultSet res = pstm.executeQuery();
+            ResultSet res = pstm.executeQuery();
+            return res;
+        } catch (Exception e) {
+            return null;
+        }
+
         /*
          res.close();	
          */
-
-        return res;
     }
 
     /**
@@ -53,7 +60,6 @@ public class UsuarioDB {
                 + " FROM usuario "
                 + " ORDER BY nombre, usuario");
 
-
         ResultSet res = pstm.executeQuery();
         return res;
     }
@@ -61,7 +67,7 @@ public class UsuarioDB {
     public String insertarUsuario(long cedula, String nombre, String correo, String cargo, String userName, char[] password, long telefono) {
         try {
             String password1 = "";
-            for(int x = 0; x<password.length; x++){
+            for (int x = 0; x < password.length; x++) {
                 password1 += password[x];
             }
             PreparedStatement pstm = cn.prepareStatement("insert into usuario "
@@ -87,14 +93,14 @@ public class UsuarioDB {
         } catch (SQLException e) {
             System.out.println(e);
             return e.getMessage();
-            
+
         }
 
     }
-    
+
     public void actualizarUsuario(Usuario m) {
 
-        try {            
+        try {
             PreparedStatement pstm = cn.prepareStatement("update usuario set "
                     + " nombre = ?, "
                     + " correo = ?,"
@@ -107,14 +113,11 @@ public class UsuarioDB {
             pstm.setString(2, m.getCorreo());
             pstm.setString(3, m.getUsername());
             pstm.setString(4, m.getPassword());
-            pstm.setInt(5, m.getTelefono());
+            pstm.setLong(5, m.getTelefono());
             pstm.setString(6, m.getCargo());
-            pstm.setInt(7, m.getCedula());
-            
-            
+            pstm.setLong(7, m.getCedula());
 
             pstm.executeUpdate();
-
 
         } catch (SQLException e) {
             System.out.println(e);
@@ -128,7 +131,7 @@ public class UsuarioDB {
             PreparedStatement pstm = cn.prepareStatement("delete from usuario "
                     + " where cedula = ?");
 
-            pstm.setInt(1, m.getCedula());
+            pstm.setLong(1, m.getCedula());
 
             pstm.executeUpdate();
 
@@ -136,8 +139,6 @@ public class UsuarioDB {
             System.out.println(e);
         }
 
-
     }
-    
-    
+
 }

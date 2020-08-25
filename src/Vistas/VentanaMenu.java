@@ -5,9 +5,10 @@
  */
 package Vistas;
 
-import Logica.Modelo;
+import Logica.Observer.Modelo;
 import Controlador.Controlador;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
@@ -15,22 +16,64 @@ import javax.swing.JPanel;
  *
  * @author thord
  */
-public class VentanaMenu extends javax.swing.JFrame {
+public final class VentanaMenu extends javax.swing.JFrame {
 
     private Modelo modelo;
     private Controlador control;
 
+    public JLabel getjLEspacioCargo() {
+        return jLEspacioCargo;
+    }
+
+    public void setjLEspacioCargo(JLabel jLEspacioCargo) {
+        this.jLEspacioCargo = jLEspacioCargo;
+    }
+
+    public JLabel getjLabelEspacioNombre() {
+        return jLabelEspacioNombre;
+    }
+
+    public void setjLabelEspacioNombre(JLabel jLabelEspacioNombre) {
+        this.jLabelEspacioNombre = jLabelEspacioNombre;
+    }
+
+    public JLabel getjLabelImagenEstado() {
+        return jLabelImagenEstado;
+    }
+
+    public void setjLabelImagenEstado(JLabel jLabelImagenEstado) {
+        this.jLabelImagenEstado = jLabelImagenEstado;
+    }
+
+    public JLabel getjLabelNombre() {
+        return jLabelNombre;
+    }
+
+    public void setjLabelNombre(JLabel jLabelNombre) {
+        this.jLabelNombre = jLabelNombre;
+    }
+
+    public JLabel getJlabelCargo() {
+        return jlabelCargo;
+    }
+
+    public void setJlabelCargo(JLabel jlabelCargo) {
+        this.jlabelCargo = jlabelCargo;
+    }
+
     /**
      * Creates new form Menu
+     * @param aThis
      */
     public VentanaMenu(Modelo aThis) {
+        
         initComponents();
         this.modelo = aThis;
         eventos();
     }
 
     public void eventos() {
-        jButtonComprar.addActionListener(getControl());
+        jButtonContinuar.addActionListener(getControl());
         jMenuItemIniciarSesion.addActionListener(getControl());
         jMenuItemCerrarSesion.addActionListener(getControl());
         jMenuItemModificarCatalogo.addActionListener(getControl());
@@ -50,11 +93,11 @@ public class VentanaMenu extends javax.swing.JFrame {
     }
 
     public JButton getjButtonComprar() {
-        return jButtonComprar;
+        return jButtonContinuar;
     }
 
     public void setjButtonComprar(JButton jButtonComprar) {
-        this.jButtonComprar = jButtonComprar;
+        this.jButtonContinuar = jButtonComprar;
     }
 
     public JMenuItem getjMenuItemCerrarSesion() {
@@ -130,12 +173,13 @@ public class VentanaMenu extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanelCarritoCompra = new javax.swing.JPanel();
-        jButtonComprar = new javax.swing.JButton();
+        jButtonContinuar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLEspacioCargo = new javax.swing.JLabel();
+        jlabelCargo = new javax.swing.JLabel();
+        jLabelEspacioNombre = new javax.swing.JLabel();
+        jLabelNombre = new javax.swing.JLabel();
+        jLabelImagenEstado = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemIniciarSesion = new javax.swing.JMenuItem();
@@ -193,7 +237,7 @@ public class VentanaMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -217,7 +261,12 @@ public class VentanaMenu extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jPanelCarritoCompra);
 
-        jButtonComprar.setText("COMPRAR");
+        jButtonContinuar.setText("Continuar");
+        jButtonContinuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonContinuarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("CARRITO DE COMPRAS:");
 
@@ -231,7 +280,7 @@ public class VentanaMenu extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -243,21 +292,23 @@ public class VentanaMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(34, 34, 34)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonComprar)
+                .addComponent(jButtonContinuar)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Carrito de compras", jPanel2);
 
-        jLabel3.setText("Cargo:");
+        jLEspacioCargo.setText("Cargo:");
 
-        jLabel4.setText("CARGO>...");
+        jlabelCargo.setText("CARGO>...");
 
-        jLabel5.setText("nombre:");
+        jLabelEspacioNombre.setText("nombre:");
 
-        jLabel6.setText("PEPITO PEREZ");
+        jLabelNombre.setText("PEPITO PEREZ");
+
+        jLabelImagenEstado.setPreferredSize(new java.awt.Dimension(21, 21));
 
         jMenu1.setText("Menu");
 
@@ -294,27 +345,32 @@ public class VentanaMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTabbedPane1)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLEspacioCargo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
+                        .addComponent(jlabelCargo)
                         .addGap(26, 26, 26)
-                        .addComponent(jLabel5)
+                        .addComponent(jLabelEspacioNombre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jLabelNombre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelImagenEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLEspacioCargo)
+                        .addComponent(jlabelCargo)
+                        .addComponent(jLabelEspacioNombre)
+                        .addComponent(jLabelNombre))
+                    .addComponent(jLabelImagenEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
@@ -323,15 +379,19 @@ public class VentanaMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonContinuarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonContinuarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonComprar;
+    private javax.swing.JButton jButtonContinuar;
+    private javax.swing.JLabel jLEspacioCargo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelEspacioNombre;
+    private javax.swing.JLabel jLabelImagenEstado;
+    private javax.swing.JLabel jLabelNombre;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
@@ -351,5 +411,6 @@ public class VentanaMenu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel jlabelCargo;
     // End of variables declaration//GEN-END:variables
 }

@@ -74,9 +74,9 @@ INSERT INTO motocolor values(4,36, true),(7,36, true),(3,36, true),(8,36, true),
 INSERT INTO motocolor values(9,43, true);
 INSERT INTO motocolor values(7,48, true),(1,49, true),(1,33, true),(2,33, true),(3,33, true);
 
-select c.color as color from color as c 
-inner join motocolor as mt on (mt.idcolor = c.idcolor)
-where mt.idmoto = 33
+SELECT c.color AS color FROM color AS c
+INNER JOIN motocolor AS mt ON (mt.idcolor = c.idcolor)
+WHERE mt.idmoto = 33
 
 
 

@@ -5,17 +5,19 @@
  */
 package Vistas.Moto;
 
+import Logica.Observer.Modelo;
+
 /**
  *
  * @author thord
  */
 public class fabricaVistaMoto {
-    public static VistaMoto construir(String ventana){
+    public static VistaMoto construir(String ventana,Modelo modelo){
         switch(ventana){
             case "carrito":
-                return new VistaMotoCarrito();
+                return new VistaMotoCarrito(modelo);
             case "catalogo":
-                return new VistaMotoCatalogo();
+                return new VistaMotoCatalogo(modelo);
             default:
                 return null;
         }

@@ -10,15 +10,15 @@ package Logica;
  * @author thord
  */
 public class Usuario {
-    private int cedula;
+    private long cedula;
     private String nombre;
     private String correo;
     private String cargo;
     private String username;
     private String password;
-    private int telefono;
+    private long telefono;
 
-    public Usuario(int cedula,String nombre,String correo,String cargo,String userName,String password, int telefono) {
+    public Usuario(long cedula,String nombre,String correo,String cargo,String userName,String password, long telefono) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.correo = correo;
@@ -27,15 +27,17 @@ public class Usuario {
         this.password = password;
         this.telefono = telefono;
     }
-    
-    
-    public int getCedula() {
+
+    public long getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(long cedula) {
         this.cedula = cedula;
     }
+    
+    
+   
 
     public String getNombre() {
         return nombre;
@@ -77,13 +79,15 @@ public class Usuario {
         this.password = password;
     }
 
-    public int getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
+
+    
   
 
     

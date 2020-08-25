@@ -5,13 +5,17 @@
  */
 package Vistas.Moto;
 
+import Logica.Observer.Modelo;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 /**
  *
@@ -32,10 +36,28 @@ public abstract class VistaMoto extends javax.swing.JPanel implements Cloneable 
     protected javax.swing.JScrollPane jScrollPaneDescripcion;
     protected javax.swing.JScrollPane jScrollPaneTitulo;
 
+    protected javax.swing.JCheckBox jCheckBoxCasco;
+    protected javax.swing.JCheckBox jCheckBoxChaleco;
+    protected javax.swing.JLabel jLabel2;
+    protected javax.swing.JLabel jLabel3;
+    protected javax.swing.JLabel jLabelPrecio;
+    protected javax.swing.JLabel jLabelTotal;
+    protected javax.swing.JPanel jPanel2;
+    protected javax.swing.JPanel jPanel3;
+    protected javax.swing.JPanel jPanel4;
+    protected javax.swing.JPanel jPanel5;
+    protected javax.swing.JPanel jPanel6;
+    protected javax.swing.JSpinner jSpinnerCantidad;
+
+
+    protected Modelo modelo;
+    protected String id;
+
     /**
      * Creates new form NewJPanel
      */
-    public VistaMoto() {
+    public VistaMoto(Modelo aThis) {
+        initComponents();
         jPanel1 = new javax.swing.JPanel();
         jScrollPaneTitulo = new javax.swing.JScrollPane();
         jPanelTitulo = new javax.swing.JPanel();
@@ -48,10 +70,87 @@ public abstract class VistaMoto extends javax.swing.JPanel implements Cloneable 
         jPanelBotones = new javax.swing.JPanel();
         jButtonModificar = new javax.swing.JButton();
         jButtonAgregarAlCarrito = new javax.swing.JButton();
+        jSpinnerCantidad = new javax.swing.JSpinner();
+        jPanel2 = new javax.swing.JPanel();
+        jLabelPrecio = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabelTotal = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jCheckBoxCasco = new javax.swing.JCheckBox();
+        jCheckBoxChaleco = new javax.swing.JCheckBox();
+        this.modelo = aThis;
         this.setSize(new Dimension(845, 200));
-        inicializar();
+        
     }
 
+    public JLabel getjLabelPrecio() {
+        return jLabelPrecio;
+    }
+
+    public void setjLabelPrecio(JLabel jLabelPrecio) {
+        this.jLabelPrecio = jLabelPrecio;
+    }
+    
+    
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setClassName() {
+        jButtonAgregarAlCarrito.setName(getId() + "-jButtonAgregarAlCarrito");
+        jButtonModificar.setName(getId() + "-jButtonModificar");
+        jSpinnerCantidad.setName(getId() + "-snipper");
+        jCheckBoxCasco.setName(getId()+"-checkBoxCasco");
+        jCheckBoxChaleco.setName(getId()+"-checkBoxChaleco");
+    }
+
+    public void eventos() {
+        jButtonAgregarAlCarrito.addActionListener(modelo.getVentana().getControl());
+        jButtonModificar.addActionListener(modelo.getVentana().getControl());
+        jSpinnerCantidad.addChangeListener(modelo.getVentana().getControl());
+        jCheckBoxCasco.addActionListener(modelo.getVentana().getControl());
+        jCheckBoxChaleco.addActionListener(modelo.getVentana().getControl());
+    }
+
+    public JCheckBox getjCheckBoxExploradoras() {
+        return jCheckBoxCasco;
+    }
+
+    public void setjCheckBoxCasco(JCheckBox jCheckBoxCasco) {
+        this.jCheckBoxCasco = jCheckBoxCasco;
+    }
+
+    public JCheckBox getjCheckBoxMaletero() {
+        return jCheckBoxChaleco;
+    }
+
+    public void setjCheckBoxChaleco(JCheckBox jCheckBoxChaleco) {
+        this.jCheckBoxChaleco = jCheckBoxChaleco;
+    }
+
+    public JLabel getjLabelTotal() {
+        return jLabelTotal;
+    }
+
+    public void setjLabelTotal(JLabel jLabelTotal) {
+        this.jLabelTotal = jLabelTotal;
+    }
+
+    public JSpinner getjSpinnerCantidad() {
+        return jSpinnerCantidad;
+    }
+
+    public void setjSpinnerCantidad(JSpinner jSpinnerCantidad) {
+        this.jSpinnerCantidad = jSpinnerCantidad;
+    }
+
+    
+    
     public JPanel getjPanel1() {
         return jPanel1;
     }
@@ -148,152 +247,14 @@ public abstract class VistaMoto extends javax.swing.JPanel implements Cloneable 
         this.jLabelImagen = jLabelImagen;
     }
 
-    
-
-    public void inicializar() {
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanelTitulo.setBackground(new java.awt.Color(255, 255, 255));
-        jPanelTitulo.setPreferredSize(new java.awt.Dimension(200, 10));
-
-        jLabelTituloMoto.setText("TITULO");
-
-        javax.swing.GroupLayout jPanelTituloLayout = new javax.swing.GroupLayout(jPanelTitulo);
-        jPanelTitulo.setLayout(jPanelTituloLayout);
-        jPanelTituloLayout.setHorizontalGroup(
-            jPanelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelTituloLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelTituloMoto, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanelTituloLayout.setVerticalGroup(
-            jPanelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelTituloLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelTituloMoto)
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
-
-        jScrollPaneTitulo.setViewportView(jPanelTitulo);
-
-        jPanelImagen.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabelImagen.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelImagen.setText("jLabel1");
-
-        javax.swing.GroupLayout jPanelImagenLayout = new javax.swing.GroupLayout(jPanelImagen);
-        jPanelImagen.setLayout(jPanelImagenLayout);
-        jPanelImagenLayout.setHorizontalGroup(
-            jPanelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanelImagenLayout.setVerticalGroup(
-            jPanelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelImagen, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-        );
-
-        jPanelDescripcion.setBackground(new java.awt.Color(255, 255, 255));
-        jPanelDescripcion.setPreferredSize(new java.awt.Dimension(200, 50));
-
-        jLabelDescripcion.setText("Descripcion...");
-
-        javax.swing.GroupLayout jPanelDescripcionLayout = new javax.swing.GroupLayout(jPanelDescripcion);
-        jPanelDescripcion.setLayout(jPanelDescripcionLayout);
-        jPanelDescripcionLayout.setHorizontalGroup(
-            jPanelDescripcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelDescripcionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanelDescripcionLayout.setVerticalGroup(
-            jPanelDescripcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelDescripcionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelDescripcion)
-                .addContainerGap(43, Short.MAX_VALUE))
-        );
-
-        jScrollPaneDescripcion.setViewportView(jPanelDescripcion);
-
-        jPanelBotones.setBackground(new java.awt.Color(255, 255, 255));
-
-        jButtonModificar.setBackground(new java.awt.Color(255, 102, 0));
-        jButtonModificar.setText("Modificar");
-        jButtonModificar.setMaximumSize(new java.awt.Dimension(117, 23));
-        jButtonModificar.setMinimumSize(new java.awt.Dimension(117, 23));
-
-        jButtonAgregarAlCarrito.setBackground(new java.awt.Color(102, 255, 0));
-        jButtonAgregarAlCarrito.setText("Agregar al carrito");
-
-        javax.swing.GroupLayout jPanelBotonesLayout = new javax.swing.GroupLayout(jPanelBotones);
-        jPanelBotones.setLayout(jPanelBotonesLayout);
-        jPanelBotonesLayout.setHorizontalGroup(
-            jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBotonesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonAgregarAlCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanelBotonesLayout.setVerticalGroup(
-            jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBotonesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonAgregarAlCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPaneTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPaneDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jPanelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPaneTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+    public void configSnipper(int min, int max){
+        SpinnerNumberModel nm = new SpinnerNumberModel();
+        nm.setMaximum(max);
+        nm.setMinimum(min);
+        nm.setStepSize(1);
+        jSpinnerCantidad.setModel(nm);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

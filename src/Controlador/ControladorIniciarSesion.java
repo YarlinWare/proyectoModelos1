@@ -5,7 +5,7 @@
  */
 package Controlador;
 
-import Logica.Modelo;
+import Logica.Observer.Modelo;
 import Vistas.IniciarSesion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,11 +30,7 @@ public class ControladorIniciarSesion implements ActionListener{
              if(boton == ventana.getjButtonIniciarSesion()){
                  String usu = ventana.getjTextFieldUsuario().getText();
                  char password[] = ventana.getjPasswordFieldPassword().getPassword();
-                 System.out.println("usuario: " + usu);
-                 System.out.print("Contra: ");
-                 for(int x = 0 ; x< password.length;x++){
-                     System.out.print(password[x]);
-                 }
+                 modelo.iniciarSesion(usu, password);
              }
          }
     }

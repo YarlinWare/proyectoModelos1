@@ -31,7 +31,7 @@ public class ConexionDB {
 //            System.out.println("Se genera la conexión");
 
         } catch (ClassNotFoundException | SQLException e) {
-            System.out.println(e.getMessage());
+//            System.out.println(e.getMessage());
             throw new RuntimeException("Conexión fallida", e);
         }
 //        System.out.println("fin");

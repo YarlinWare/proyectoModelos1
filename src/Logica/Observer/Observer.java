@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Logica.Decorator;
+
+package Logica.Observer;
 
 /**
  *
- * @author Familia-PC
+ * @author sehjud
  */
-public interface ObjetosPedido {
-
-    public String getDescripcion();
-
-    public int getPrecio();
+public interface Observer {
+    public void update();
+    public void updateUsuario();
 }

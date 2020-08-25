@@ -24,9 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import Logica.Decorator.MotoDecorator;
-import Logica.Tienda;
-import Logica.fabrica.Motocicleta;
+import Logica.Motos;
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Image;
+import java.io.IOException;
 /**
  *
  * @author ASUS
@@ -41,13 +43,13 @@ public class GenerarPDFSimple extends DocumentoSimple{
         } catch (InterruptedException ex) {
             Logger.getLogger(GenerarPDFSimple.class.getName()).log(Level.SEVERE, null, ex);
         }
-        List<MotoDecorator> listamotos = new ArrayList<MotoDecorator>();
+        List<Motos> listamotos = new ArrayList<Motos>();
         
-        listamotos.add(new MotoDecorator("FSZ","Yamaha", "Rojo",900));
-        listamotos.add(new MotoDecorator("FSZ","Yamaha", "Azul",900));        
-        listamotos.add(new MotoDecorator("FSZ","Yamaha", "Negro",900));
-        listamotos.add(new MotoDecorator("FSZ","Yamaha", "Gris",900));
-        listamotos.add(new MotoDecorator("FSZ","Yamaha", "Verde",900));
+        listamotos.add(new Motos("FSZ","Yamaha", "Rojo",900));
+        listamotos.add(new Motos("FSZ","Yamaha", "Azul",900));        
+        listamotos.add(new Motos("FSZ","Yamaha", "Negro",900));
+        listamotos.add(new Motos("FSZ","Yamaha", "Gris",900));
+        listamotos.add(new Motos("FSZ","Yamaha", "Verde",900));
         
         System.out.println("Se encontraron "+listamotos.size()+" registros");
         
@@ -79,7 +81,7 @@ public class GenerarPDFSimple extends DocumentoSimple{
         
     }
     
-    public static void crearPDF(List<MotoDecorator> lista) throws FileNotFoundException, DocumentException {
+    public static void crearPDF(List<Motos> lista) throws FileNotFoundException, DocumentException {
         // Se crea el documento
         Document documento = new Document();
         
@@ -130,6 +132,20 @@ public class GenerarPDFSimple extends DocumentoSimple{
         // Añadimos el titulo, arrafo y tabla al documento
         documento.add(titulo);
         documento.add(parrafo);
+        // Instanciando Imagen
+        try {    
+            Image imagen = Image.getInstance("fotografias/Bajaj/Boxer/Bajaj-Boxer-boxerct100cargo.png");
+            imagen.setAlignment(Element.ALIGN_CENTER);
+            imagen.setAbsolutePosition(0f, 0f);
+            //imagen.scaleAbsoluteHeight(450f);            
+            //imagen.scaleAbsoluteWidth(600f);
+            documento.add(imagen);
+        } catch (BadElementException ex) {
+            Logger.getLogger(GenerarPDFDetallado.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GenerarPDFDetallado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         documento.add(tabla);
         System.out.println("Se añade información de las motos almacenadas en la base de datos");
         
@@ -144,10 +160,10 @@ public class GenerarPDFSimple extends DocumentoSimple{
     }
     
     public void listaDeMotos(){
-        List<MotoDecorator> listamotos = new ArrayList<MotoDecorator>();
+        List<Motos> listamotos = new ArrayList<Motos>();
         
         for (int i = 0; i < listamotos.size(); i++) {
-                listamotos.add(new MotoDecorator("Campo1","Campo2","Campo3",9));
+                listamotos.add(new Motos("Campo1","Campo2","Campo3",9));
             }
     }
     
