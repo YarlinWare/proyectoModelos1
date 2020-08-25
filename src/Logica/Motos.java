@@ -37,7 +37,23 @@ public class Motos {
         this.cilindraje = cilindraje;
         this.cantidad = cantidad;
     }
+
+    public Motos( String linea, String marca, String color, int precio ) {
+        //To change body of generated methods, choose Tools | Templates.
+        this.precio = precio;
+        this.marca = marca;
+        this.linea = linea;
+        this.modelo = color;
+    }
     
+    public Motos(int precio, String marca, String linea, String modelo, String  color) {
+        //To change body of generated methods, choose Tools | Templates.
+        this.precio = precio;
+        this.marca = marca;
+        this.linea = linea;
+        this.modelo = modelo;
+        this.color = color;
+    }
     
 
     public int getIdMoto() {

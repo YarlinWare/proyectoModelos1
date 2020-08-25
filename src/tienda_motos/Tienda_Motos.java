@@ -5,6 +5,9 @@
  */
 package tienda_motos;
 
+import Logica.Estrategia.GenerarContexto;
+import Logica.Estrategia.GenerarPDFDetallado;
+import Logica.Observer.Modelo;
 import database.ConexionDB;
 import database.MotosDB;
 import java.sql.SQLException;
@@ -13,15 +16,19 @@ import java.sql.SQLException;
  * @author thord
  */
 public class Tienda_Motos {
-
-    /**
-     * @param args the command line arguments
-     */
+    public Tienda_Motos(){
+        Modelo miApp = new Modelo();
+        miApp.iniciar();
+    }
+    
     public static void main(String[] args){
-        ConexionDB cn = ConexionDB.getInstance();
-        System.out.println(cn);
-        ConexionDB cn2 = ConexionDB.getInstance();
-        System.out.println(cn2);
+        new Tienda_Motos();        
+        GenerarContexto contexto = new GenerarContexto(new GenerarPDFDetallado());
+        contexto.ejecutar();
+//        ConexionDB cn = ConexionDB.getInstance();
+//        System.out.println(cn);
+//        ConexionDB cn2 = ConexionDB.getInstance();
+//        System.out.println(cn2);
     }
     
 }
