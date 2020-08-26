@@ -23,15 +23,12 @@ import Vistas.IniciarSesion;
 import Vistas.RegistroUsuario;
 import Vistas.Alert;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.naming.spi.DirStateFactory;
 import javax.swing.BoxLayout;
-import javax.swing.event.ChangeListener;
-import Logica.Decorator.Item;
+import Vistas.VentanaCompra;
+import javax.swing.table.DefaultTableModel;
+
 //import com.sun.org.apache.xml.internal.security.encryption.AgreementMethod;
 
 /**
@@ -47,6 +44,7 @@ public class Modelo implements Observer {
     private IniciarSesion ventanaInicioSesion;
     private RegistroUsuario ventanaRegistro;
     private VentanaMenu ventanaMenu;
+    private VentanaCompra ventanaCompra;
     private Tienda tienda;
 
     public Modelo() {
@@ -54,6 +52,7 @@ public class Modelo implements Observer {
         tienda.getObservadores().add(this);
         this.ventanaInicioSesion = null;
         this.ventanaRegistro = null;
+        this.ventanaCompra = null;
         this.EXITO = cargarImg("/img/exito.png", 80, 80);
         this.ERROR = cargarImg("/img/error.png", 80, 80);
         this.ONLINE = cargarImg("/img/online.png", 20, 20);
@@ -216,6 +215,17 @@ public class Modelo implements Observer {
         return ventanaRegistro;
     }
 
+    public VentanaCompra getVentanaCompra() {
+        if (ventanaCompra == null) {
+            ventanaCompra = new VentanaCompra(this);
+        }
+        return ventanaCompra;
+    }
+
+    public void VentanaCompra() {
+        getVentanaCompra().setVisible(true);
+    }
+
     public void ventanaIniciarSesion() {
         getVentanaIniciarSesion().setVisible(true);
     }
@@ -277,7 +287,7 @@ public class Modelo implements Observer {
                 a.getjCheckBoxExploradoras().setEnabled(false);
                 a.getjCheckBoxMaletero().setEnabled(false);
             }
-            
+
             try {
 
                 Image imagenInterna = new ImageIcon(getClass().
@@ -409,4 +419,36 @@ public class Modelo implements Observer {
         }
     }
 
+    public void cargarDatosCompra() {
+        ArrayList<Motocicleta> listaMotos = tienda.getCarritoCompra();
+        String titulos[] = {"Cantidad", "Marca", "Linea", "Modelo", "Precio Unidad", "Precio Total"};
+        String matrizInfo[][] = new String[listaMotos.size()][6];
+
+        for (int i = 0; i < listaMotos.size(); i++) {
+            matrizInfo[i][0] = listaMotos.get(i).getCantidad() + "";
+            matrizInfo[i][1] = listaMotos.get(i).getMarca() + "";
+            matrizInfo[i][2] = listaMotos.get(i).getLinea() + "";
+            matrizInfo[i][3] = listaMotos.get(i).getModelo() + "";
+            matrizInfo[i][4] = listaMotos.get(i).getPrecio() + "";
+            matrizInfo[i][5] = listaMotos.get(i).getPrecio() * listaMotos.get(i).getCantidad() + "";
+
+        }
+        ventanaCompra.getjTableMotosCompra().setModel(new DefaultTableModel(matrizInfo, titulos));
+    }
+    
+    public void procesarCompra(){
+        tienda.procesarCompra();
+        if (tienda.procesarCompra()== true) {
+            Alert.mensaje(getVentanaCompra(), "Venta aprobada\n"+tienda.getVenta().getInfoAprobacion(), "Aprobacion", EXITO);
+        }else{
+            Alert.mensaje(getVentanaCompra(), "Venta no aprobada\n"+tienda.getVenta().getInfoAprobacion(), "Aprobacion", ERROR);
+        }
+    }
+    public void generarPDFSencillo(){
+        tienda.generarPdfSencillo();
+    }
+    
+    public void generarPDFDetallado(){
+        tienda.generarPdfDetallado();
+    }
 }

@@ -6,52 +6,43 @@
 package Logica.Estrategia;
 
 
-import Logica.fabrica.Motocicleta;
-import com.itextpdf.text.BadElementException;
+import Logica.Moto;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
 import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import database.MotosDB;
 import java.awt.Font;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import Logica.Motos;
+import Logica.fabrica.Motocicleta;
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Image;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author ASUS
  */
-public class GenerarPDFDetallado extends DocumentoDetallado{
+public class GenerarPDFSencillo extends DocumentoSencillo{
 
     @Override
-    void generarDocumentoDetallado(ArrayList<Motocicleta> catalogo) {
+    void generarDocumentoSencilloPDF(ArrayList<Motocicleta> catalogo) {
+        System.out.println("Generar documento simple");
 
-        System.out.println("Generar documento catalogo");
-//        
-//        List<Motos> listamotos = new ArrayList<Motos>();
-//        
-//        listamotos.add(new Motos(900, "Yamaha","FSZ","2021","Rojo"));
-//        listamotos.add(new Motos(900, "Yamaha","FSZ","2021","Azul"));        
-//        listamotos.add(new Motos(900, "Yamaha","FSZ","2021","Negro"));
-//        listamotos.add(new Motos(900, "Yamaha","FSZ","2021","Gris"));
-//        listamotos.add(new Motos(900, "Yamaha","FSZ","2021", "Verde"));
-//        
-//        System.out.println("Se encontraron "+listamotos.size()+" registros");
-//        
-//        MotosDB motosdb = new MotosDB();
-//        ResultSet res = null;
-//        
         try {
             crearPDF(catalogo);
         } catch (FileNotFoundException ex) {
@@ -59,13 +50,13 @@ public class GenerarPDFDetallado extends DocumentoDetallado{
         } catch (DocumentException ex) {
             Logger.getLogger(GenerarPDFSencillo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(GenerarPDFDetallado.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GenerarPDFSencillo.class.getName()).log(Level.SEVERE, null, ex);
         }
-//        
+        
     }
     
-    public static void crearPDF(ArrayList<Motocicleta> lista) throws FileNotFoundException, DocumentException, BadElementException, IOException {
-        // Se crea el documento
+    public static void crearPDF(ArrayList<Motocicleta> lista) throws FileNotFoundException, DocumentException, IOException {
+         // Se crea el documento
         Document documento = new Document();
         
         //Aquí colocas tu objeto tipo Date
@@ -74,7 +65,7 @@ public class GenerarPDFDetallado extends DocumentoDetallado{
         //Aquí obtienes el formato que deseas
         System.out.println(fecha.format(myDate));
         // El OutPutStream para el fichero donde crearemos el PDF
-        FileOutputStream ficheroPDF = new FileOutputStream("ListaMotosDetallado"+fecha.format(myDate)+".pdf");
+        FileOutputStream ficheroPDF = new FileOutputStream("ListaSencilla"+fecha.format(myDate)+".pdf");
         
         // Se asocia el documento de OutPutStream
         PdfWriter.getInstance(documento, ficheroPDF);
@@ -88,7 +79,7 @@ public class GenerarPDFDetallado extends DocumentoDetallado{
 
         // Parrafo
         Paragraph parrafo = new Paragraph(""
-                + "A continuación se lista de manera general y a detalle "
+                + "A continuación se lista de manera general "
                 + "el consolidado de motos diponibles en nuestro consecionario."
                 + "\n\n",
                 FontFactory.getFont("arial",
@@ -101,12 +92,10 @@ public class GenerarPDFDetallado extends DocumentoDetallado{
         String separador = System.getProperty("user.dir");
         String ruta = separador+"/src";
         // Creamos una tabla
-        PdfPTable tabla = new PdfPTable(6);
+        PdfPTable tabla = new PdfPTable(4);
+        tabla.addCell("Marca");
         tabla.addCell("Ref.");
         tabla.addCell("Linea");
-        tabla.addCell("Marca");
-        tabla.addCell("Categoría");
-        tabla.addCell("Modelo");
         tabla.addCell("Valor");                    
         
         for(int i = 0 ; i < lista.size() ; i++) {              
@@ -117,14 +106,11 @@ public class GenerarPDFDetallado extends DocumentoDetallado{
                 imagen.setAlignment(Element.ALIGN_CENTER);
                 imagen.setAbsolutePosition(0f, 0f);
                 imagen.scaleAbsoluteHeight(10f);            
-                imagen.scaleAbsoluteWidth(10f);            
+                imagen.scaleAbsoluteWidth(10f);    
+                tabla.addCell(lista.get(i).getMarca());        
                 tabla.addCell(imagen);
                 tabla.addCell(lista.get(i).getLinea());
-                tabla.addCell(lista.get(i).getMarca());
-                tabla.addCell(lista.get(i).getCategoria());
-                tabla.addCell(String.valueOf(lista.get(i).getModelo()));
                 tabla.addCell(String.valueOf(lista.get(i).getPrecio()));
-
         }
         
         // Añadimos el titulo, arrafo y tabla al documento
@@ -138,5 +124,6 @@ public class GenerarPDFDetallado extends DocumentoDetallado{
         documento.close();        
         System.out.println("Se realiza el cierre del documento");
     }
-  
+
+ 
 }

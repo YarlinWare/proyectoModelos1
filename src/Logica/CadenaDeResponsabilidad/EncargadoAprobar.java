@@ -5,6 +5,9 @@
  */
 package Logica.CadenaDeResponsabilidad;
 
+import Logica.Usuario;
+import Logica.Venta;
+
 /**
  *
  * @author Familia-PC
@@ -17,7 +20,7 @@ public abstract class EncargadoAprobar {
         this.siguiente = siguiente;
     }
 
-    public void solicitarAprobacion(int cantidad) {
+    public void solicitarAprobacion(Venta venta, Usuario usuario) {
     }
 ;
 }

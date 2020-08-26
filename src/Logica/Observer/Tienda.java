@@ -5,6 +5,7 @@
  */
 package Logica.Observer;
 
+import Logica.CadenaDeResponsabilidad.Aprobacion;
 import Logica.CarritoCompras;
 import Logica.Decorator.MotocicletaExploradoras;
 import Logica.Decorator.MotocicletaMaletero;
@@ -19,6 +20,13 @@ import Logica.fabrica.farbicaMotocicleta;
 import database.UsuarioDB;
 import java.util.Iterator;
 import Logica.Decorator.Item;
+import Logica.Estrategia.GenerarContexto;
+import Vistas.Alert;
+import Vistas.VentanaCompra;
+import Logica.Estrategia.GenerarContexto;
+import Logica.Estrategia.GenerarPDFDetallado;
+import Logica.Estrategia.GenerarPDFSencillo;
+import Logica.Venta;
 //import com.sun.org.apache.xml.internal.security.encryption.AgreementMethod;
 
 /**
@@ -30,6 +38,16 @@ public class Tienda extends Sujeto {
     Usuario usuario;
     ArrayList<Motocicleta> catalogo;
     CarritoCompras carritoCompra;
+    GenerarPDFDetallado generarPdf;
+    Venta venta;
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
 
     public Usuario getUsuario() {
         return usuario;
@@ -114,8 +132,27 @@ public class Tienda extends Sujeto {
         notificarUsuario();
     }
 
-    public void procesarCompra() {
+    public boolean procesarCompra() {
+        Aprobacion aprobar = new Aprobacion();
+        Venta venta = new Venta(getCarritoCompra());
+        venta.setCantidadTotal(calcularMotosVenta());
+        aprobar.solicitarAprobacion(venta, usuario);
+        this.venta = venta;
+        if (venta.isAprobada() == true) {
+            return true;
+        } else {
+            return false;
+        }
 
+    }
+
+    public int calcularMotosVenta() {
+        int cantidadTotal = 0;
+        ArrayList<Motocicleta> motosCompra = getCarritoCompra();
+        for (int i = 0; i < motosCompra.size(); i++) {
+            cantidadTotal += motosCompra.get(i).getCantidad();
+        }
+        return cantidadTotal;
     }
 
     public String agregarAlCarrito(String id) {
@@ -216,6 +253,18 @@ public class Tienda extends Sujeto {
 
     }
 
-    
+    public void generarPdfSencillo(){
+        Motocicleta moto = catalogo.get(2);
+        GenerarContexto nuevoPdf = new GenerarContexto(new GenerarPDFSencillo());
+        System.out.println("Cargando Catálogo sencillo en documento pdf");
+        nuevoPdf.ejecutar(catalogo);
 
+    }
+    public void generarPdfDetallado(){
+        Motocicleta moto = catalogo.get(2);
+       GenerarContexto nuevoPdf = new GenerarContexto(new GenerarPDFDetallado());
+        System.out.println("Cargando Catálogo detallado en documento pdf");
+       nuevoPdf.ejecutar(catalogo);
+
+    }
 }

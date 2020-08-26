@@ -5,18 +5,115 @@
  */
 package Vistas;
 
+import Controlador.ControladorCompra;
+import Logica.Observer.Modelo;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JFrame;
+import javax.swing.JTable;
+
 /**
  *
  * @author thord
  */
-public class VentanaCompra extends javax.swing.JFrame {
+public class VentanaCompra extends JFrame {
+
+    private Modelo modelo;
+    private ControladorCompra controlCompra;
+
+       public VentanaCompra(Modelo aThis) {
+        initComponents();
+        this.modelo = aThis;
+        eventos();
+
+    }
+    
+
+    public Modelo getModelo() {
+        return modelo;
+    }
+
+    public ControladorCompra getConotrolCompra() {
+        if (controlCompra == null) {
+            this.controlCompra = new ControladorCompra(this);
+        }
+        return controlCompra;
+    }
+
+    public void eventos() {
+        jButtonProcesarPedido.addActionListener(getConotrolCompra());
+    }
+
+    public JButton getjButtonProcesarPedido() {
+        return jButtonProcesarPedido;
+    }
+
+    
+    
+    
+    public JTable getjTableMotosCompra() {
+        return jTableMotosCompra;
+    }
+
+    public void setjTableMotosCompra(JTable jTableMotosCompra) {
+        this.jTableMotosCompra = jTableMotosCompra;
+    }
+
+    
+
+    public JScrollPane getjScrollPaneMotos() {
+        return jScrollPaneMotos;
+    }
+
+    public void setjScrollPaneMotos(JScrollPane jScrollPaneMotos) {
+        this.jScrollPaneMotos = jScrollPaneMotos;
+    }
+
+    public JTextField getjTextCedula() {
+        return jTextCedula;
+    }
+
+    public void setjTextCedula(JTextField jTextCedula) {
+        this.jTextCedula = jTextCedula;
+    }
+
+    public JTextField getjTextCorreo() {
+        return jTextCorreo;
+    }
+
+    public void setjTextCorreo(JTextField jTextCorreo) {
+        this.jTextCorreo = jTextCorreo;
+    }
+
+    public JTextField getjTextEdad() {
+        return jTextEdad;
+    }
+
+    public void setjTextEdad(JTextField jTextEdad) {
+        this.jTextEdad = jTextEdad;
+    }
+
+    public JTextField getjTextNombre() {
+        return jTextNombre;
+    }
+
+    public void setjTextNombre(JTextField jTextNombre) {
+        this.jTextNombre = jTextNombre;
+    }
+
+    public JTextField getjTextNumeroCelular() {
+        return jTextNumeroCelular;
+    }
+
+    public void setjTextNumeroCelular(JTextField jTextNumeroCelular) {
+        this.jTextNumeroCelular = jTextNumeroCelular;
+    }
 
     /**
      * Creates new form FormularioCompra
      */
-    public VentanaCompra() {
-        initComponents();
-    }
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,13 +131,15 @@ public class VentanaCompra extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        jTextNombre = new javax.swing.JTextField();
+        jTextCedula = new javax.swing.JTextField();
+        jTextNumeroCelular = new javax.swing.JTextField();
+        jTextCorreo = new javax.swing.JTextField();
+        jTextEdad = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        jScrollPaneMotos = new javax.swing.JScrollPane();
+        jTableMotosCompra = new javax.swing.JTable();
         jButtonProcesarPedido = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,8 +171,8 @@ public class VentanaCompra extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(38, 38, 38)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField1)))
+                            .addComponent(jTextCedula)
+                            .addComponent(jTextNombre)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(0, 271, Short.MAX_VALUE))
@@ -84,9 +183,9 @@ public class VentanaCompra extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField5))))
+                            .addComponent(jTextNumeroCelular)
+                            .addComponent(jTextCorreo)
+                            .addComponent(jTextEdad))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -97,23 +196,23 @@ public class VentanaCompra extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextNumeroCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -121,21 +220,39 @@ public class VentanaCompra extends javax.swing.JFrame {
 
         jLabel7.setText("LISTA DE MOTOS.");
 
+        jTableMotosCompra.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPaneMotos.setViewportView(jTableMotosCompra);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPaneMotos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7)
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPaneMotos, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
         );
 
         jButtonProcesarPedido.setText("Procesar pedido");
@@ -170,38 +287,6 @@ public class VentanaCompra extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaCompra().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonProcesarPedido;
@@ -214,10 +299,12 @@ public class VentanaCompra extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JScrollPane jScrollPaneMotos;
+    private javax.swing.JTable jTableMotosCompra;
+    private javax.swing.JTextField jTextCedula;
+    private javax.swing.JTextField jTextCorreo;
+    private javax.swing.JTextField jTextEdad;
+    private javax.swing.JTextField jTextNombre;
+    private javax.swing.JTextField jTextNumeroCelular;
     // End of variables declaration//GEN-END:variables
 }

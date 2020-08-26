@@ -5,6 +5,9 @@
  */
 package Logica.CadenaDeResponsabilidad;
 
+import Logica.Usuario;
+import Logica.Venta;
+
 /**
  *
  * @author Familia-PC
@@ -21,14 +24,17 @@ public class Aprobacion extends EncargadoAprobar {
         this.siguiente = siguiente;
     }
     
-    public void solicitarAprobacion(int cantidad) {
-        EncargadoAprobar asesor = new AsesorVentas();
-        this.setSiguiente(asesor);
+    public void solicitarAprobacion(Venta venta, Usuario usuario) {
+        EncargadoAprobar asesor1 = new Asesor1();
+        this.setSiguiente(asesor1);
+        
+        EncargadoAprobar asesor2 = new Asesor2();
+        asesor1.setSiguiente(asesor2);
         
         EncargadoAprobar jefe = new JefeVentas();
-        asesor.setSiguiente(jefe);
+        asesor2.setSiguiente(jefe);
         
-        siguiente.solicitarAprobacion(cantidad);
+        siguiente.solicitarAprobacion(venta,usuario);
     }
     
 }
