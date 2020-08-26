@@ -12,7 +12,7 @@ import Logica.Venta;
  *
  * @author Familia-PC
  */
-public class JefeVentas extends EncargadoAprobar {
+public class Asesor1 extends EncargadoAprobar {
 
     private EncargadoAprobar siguiente;
     String mensaje;
@@ -26,15 +26,23 @@ public class JefeVentas extends EncargadoAprobar {
     }
 
     public void solicitarAprobacion(Venta venta, Usuario usuario) {
-        if (venta.getCantidadTotal() > 10) {
-            if (usuario.getCargo().equals("Jefe")) {
-                mensaje = "Solicitud aprobada por el "+usuario.getCargo()+" "+usuario.getNombre();
+
+        if (venta.getCantidadTotal() <= 5 && venta.getCantidadTotal() > 0) {
+            if (usuario.getCargo().equals("ASESOR1")) {
+                // Alert.mensaje(ventana, mensaje, mensaje, img);
+                mensaje = "Solicitud aprobada por el " + usuario.getCargo() + " " + usuario.getNombre();
                 venta.setInfoAprobacion(mensaje);
+               // System.out.println(mensaje);
                 venta.setAprobada(true);
             } else {
-                mensaje = "Contactar al Jefe de ventas para aprobar la compra";
+                mensaje = "Contactar al ASESOR1 para aprobar la compra";
                 venta.setInfoAprobacion(mensaje);
             }
+        } else {
+            mensaje = "Contactar al ASESOR2";
+            venta.setInfoAprobacion(mensaje);
+            siguiente.solicitarAprobacion(venta, usuario);
         }
     }
+
 }

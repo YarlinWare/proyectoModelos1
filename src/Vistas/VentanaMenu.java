@@ -69,6 +69,7 @@ public final class VentanaMenu extends javax.swing.JFrame {
         
         initComponents();
         this.modelo = aThis;
+       // jButtonContinuar = new javax.swing.JButton();
         eventos();
     }
 
@@ -92,13 +93,22 @@ public final class VentanaMenu extends javax.swing.JFrame {
         return control;
     }
 
-    public JButton getjButtonComprar() {
+    public JButton getjButtonContinuar() {
         return jButtonContinuar;
     }
 
-    public void setjButtonComprar(JButton jButtonComprar) {
-        this.jButtonContinuar = jButtonComprar;
+    public void setjButtonContinuar(JButton jButtonContinuar) {
+        this.jButtonContinuar = jButtonContinuar;
     }
+
+    
+//    public JButton getjButtonComprar() {
+//        return jButtonContinuar;
+//    }
+//
+//    public void setjButtonComprar(JButton jButtonComprar) {
+//        this.jButtonContinuar = jButtonComprar;
+//    }
 
     public JMenuItem getjMenuItemCerrarSesion() {
         return jMenuItemCerrarSesion;
