@@ -31,7 +31,9 @@ public class Controlador implements ActionListener, ChangeListener {
 
     public Controlador(VentanaMenu ventana) {
         this.ventana = ventana;
-        this.modelo = ventana.getModelo();
+        this.modelo = ventana.getModelo();        
+        this.ventana.jButtonSimple.addActionListener(this);
+        this.ventana.jButtonDetallado.addActionListener(this); 
         desactivarOpciones();
     }
 
@@ -52,27 +54,40 @@ public class Controlador implements ActionListener, ChangeListener {
                 modelo.cerrarSesion();
             }
         }
-
+        
         if (e.getSource() instanceof JButton) {
 
             JButton boton = (JButton) e.getSource();
+            
             if (boton == ventana.getjButtonContinuar()) {
                 modelo.VentanaCompra();
                 modelo.cargarDatosCompra();
-            } else {
+            } 
+            else if (boton == ventana.getjButtonDetallado()) {
+                modelo.generarPDFDetallado();
+            }             
+            else if (boton == ventana.getjButtonSimple()) {
+                modelo.generarPDFSencillo();
+            }
+            else {
                 String string = boton.getName();
                 String[] parts = string.split("-");
                 String id = parts[0];
                 String part2 = parts[1];
                 if (part2.equals("jButtonAgregarAlCarrito")) {
                     modelo.agregarAlCarrito(id);
-                    modelo.generarPDFSencillo();
                 }
                 if (part2.equals("jButtonModificar")) {
                     modelo.modificarMoto(id);
                 }
             }
-
+            /*if (e.getSource() == ventana.jButtonSimple) {
+                modelo.generarPDFSencillo();
+            }
+            if (e.getSource() == ventana.jButtonDetallado) {
+                    modelo.generarPDFDetallado();
+            }*/
+                       
         }
 
         if (e.getSource() instanceof JCheckBox) {
@@ -96,6 +111,7 @@ public class Controlador implements ActionListener, ChangeListener {
                 }
             }
         }
+
     }
 
     private void desactivarOpciones() {

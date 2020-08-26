@@ -168,6 +168,25 @@ public final class VentanaMenu extends javax.swing.JFrame {
         this.jPanelCatalogo = jPanelCatalogo;
     }
 
+    public JButton getjButtonDetallado() {
+        return jButtonDetallado;
+    }
+
+    public void setjButtonDetallado(JButton jButtonDetallado) {
+        this.jButtonDetallado = jButtonDetallado;
+    }
+
+    public JButton getjButtonSimple() {
+        return jButtonSimple;
+    }
+
+    public void setjButtonSimple(JButton jButtonSimple) {
+        this.jButtonSimple = jButtonSimple;
+    }
+
+    
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -180,6 +199,9 @@ public final class VentanaMenu extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanelCatalogo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jButtonSimple = new javax.swing.JButton();
+        jButtonDetallado = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanelCarritoCompra = new javax.swing.JPanel();
@@ -228,6 +250,12 @@ public final class VentanaMenu extends javax.swing.JFrame {
 
         jLabel1.setText("CATALOGO...");
 
+        jLabel3.setText("Descargar catálogo");
+
+        jButtonSimple.setText("Simple");
+
+        jButtonDetallado.setText("Detallado");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -238,6 +266,12 @@ public final class VentanaMenu extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
+                        .addGap(296, 296, 296)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonSimple)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonDetallado)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -245,9 +279,13 @@ public final class VentanaMenu extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(jButtonSimple)
+                    .addComponent(jButtonDetallado))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -396,9 +434,12 @@ public final class VentanaMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonContinuar;
+    public javax.swing.JButton jButtonDetallado;
+    public javax.swing.JButton jButtonSimple;
     private javax.swing.JLabel jLEspacioCargo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelEspacioNombre;
     private javax.swing.JLabel jLabelImagenEstado;
     private javax.swing.JLabel jLabelNombre;
