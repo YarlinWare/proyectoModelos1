@@ -6,13 +6,9 @@
 package Controlador;
 
 import Logica.Observer.Modelo;
-import Vistas.IniciarSesion;
-import Vistas.RegistroUsuario;
 import Vistas.VentanaMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JMenuItem;
@@ -31,7 +27,7 @@ public class Controlador implements ActionListener, ChangeListener {
 
     public Controlador(VentanaMenu ventana) {
         this.ventana = ventana;
-        this.modelo = ventana.getModelo();        
+        this.modelo = ventana.getModelo();
         this.ventana.jButtonSimple.addActionListener(this);
         this.ventana.jButtonDetallado.addActionListener(this); 
         desactivarOpciones();
@@ -54,40 +50,37 @@ public class Controlador implements ActionListener, ChangeListener {
                 modelo.cerrarSesion();
             }
         }
-        
+
         if (e.getSource() instanceof JButton) {
 
             JButton boton = (JButton) e.getSource();
-            
             if (boton == ventana.getjButtonContinuar()) {
                 modelo.VentanaCompra();
-                modelo.cargarDatosCompra();
-            } 
-            else if (boton == ventana.getjButtonDetallado()) {
+            } else if (boton == ventana.getjButtonAtras()) {
+                modelo.tiendaAtras();
+            }else if (boton == ventana.getjButtonDetallado()) {
                 modelo.generarPDFDetallado();
             }             
             else if (boton == ventana.getjButtonSimple()) {
                 modelo.generarPDFSencillo();
-            }
-            else {
+            } else {
                 String string = boton.getName();
                 String[] parts = string.split("-");
                 String id = parts[0];
-                String part2 = parts[1];
+                String part2 = parts[parts.length-1];
+                
                 if (part2.equals("jButtonAgregarAlCarrito")) {
                     modelo.agregarAlCarrito(id);
                 }
                 if (part2.equals("jButtonModificar")) {
                     modelo.modificarMoto(id);
                 }
+                        
+                if (part2.equals("jButtonEliminar")) {
+                    modelo.eliminarPorId(id);
+                }
             }
-            /*if (e.getSource() == ventana.jButtonSimple) {
-                modelo.generarPDFSencillo();
-            }
-            if (e.getSource() == ventana.jButtonDetallado) {
-                    modelo.generarPDFDetallado();
-            }*/
-                       
+
         }
 
         if (e.getSource() instanceof JCheckBox) {
@@ -99,19 +92,15 @@ public class Controlador implements ActionListener, ChangeListener {
             if (part2.equals("checkBoxCasco")) {
                 if (checkBox.isSelected()) {
                     modelo.agregarExploradoras(id);
-//                    checkBox.setEnabled(false);
                 }
 
             }
             if (part2.equals("checkBoxChaleco")) {
-//                System.out.println("Agregar Maletero");
                 if (checkBox.isSelected()) {
                     modelo.agregarMaletero(id);
-//                    checkBox.setEnabled(false);
                 }
             }
         }
-
     }
 
     private void desactivarOpciones() {

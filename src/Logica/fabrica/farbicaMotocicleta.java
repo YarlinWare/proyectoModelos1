@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 
 public class farbicaMotocicleta {
-    public static Motocicleta construir(int id,String marca, String linea, String modelo,
+    public static Motocicleta construir(String id,String marca, String linea, String modelo,
             String color,int precio, String descipcion,int potencia,String tipo,String imagen,int cantidad){
         switch(tipo){
             case "Gasolina":

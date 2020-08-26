@@ -14,7 +14,7 @@ public class MotocicletaElectrica extends Motocicleta implements Cloneable{
     
     int potencia;
 
-    public MotocicletaElectrica(int id,String marca, String linea, String modelo,String color,int precio, String descipcion,int potencia,String imagen,int cantidad) {
+    public MotocicletaElectrica(String id,String marca, String linea, String modelo,String color,int precio, String descipcion,int potencia,String imagen,int cantidad) {
         super(id,marca, linea, modelo, descipcion,imagen,precio,cantidad);
         this.categoria = "Electrica";
         this.potencia = potencia;
