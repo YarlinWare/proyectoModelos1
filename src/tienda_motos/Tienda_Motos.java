@@ -24,7 +24,7 @@ public class Tienda_Motos {
     public static void main(String[] args){
         new Tienda_Motos();        
         GenerarContexto contexto = new GenerarContexto(new GenerarPDFDetallado());
-        contexto.ejecutar();
+//        contexto.ejecutar();
 //        ConexionDB cn = ConexionDB.getInstance();
 //        System.out.println(cn);
 //        ConexionDB cn2 = ConexionDB.getInstance();

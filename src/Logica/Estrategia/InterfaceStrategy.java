@@ -5,10 +5,13 @@
  */
 package Logica.Estrategia;
 
+import Logica.fabrica.Motocicleta;
+import java.util.ArrayList;
+
 /**
  *
  * @author ASUS
  */
 public interface InterfaceStrategy {
-    void generarDocumento();
+    void generarDocumento(ArrayList<Motocicleta> catalogo);
 }

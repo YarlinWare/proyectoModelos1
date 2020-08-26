@@ -60,6 +60,8 @@ public class Controlador implements ActionListener, ChangeListener {
             String part2 = parts[1];
             if (part2.equals("jButtonAgregarAlCarrito")) {
                 modelo.agregarAlCarrito(id);
+                //
+                modelo.generarPDFSencillo();
             }
             if (part2.equals("jButtonModificar")) {
                 modelo.modificarMoto(id);

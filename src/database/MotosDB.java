@@ -66,7 +66,7 @@ public class MotosDB {
                 + " categoria,"
                 + " cantidad "
                 + " FROM moto"
-                + " ORDER BY marca, linea, modelo ");
+                + " ORDER BY modelo, categoria, marca, linea, modelo ");
 
 
         ResultSet res = pstm.executeQuery();

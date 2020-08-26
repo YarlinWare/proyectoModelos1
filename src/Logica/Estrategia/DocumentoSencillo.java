@@ -12,11 +12,13 @@ import java.util.ArrayList;
  *
  * @author ASUS
  */
-public abstract class DocumentoDetallado implements InterfaceStrategy{
+public abstract class DocumentoSencillo implements InterfaceStrategy{
+    
     
     public void generarDocumento(ArrayList<Motocicleta> catalogo){
-        generarDocumentoDetallado(catalogo);
+        
+        generarDocumentoSencilloPDF(catalogo);
     }
     
-    abstract void generarDocumentoDetallado(ArrayList<Motocicleta> catalogo);
+    abstract void generarDocumentoSencilloPDF(ArrayList<Motocicleta> catalogo);
 }

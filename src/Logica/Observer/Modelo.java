@@ -408,5 +408,13 @@ public class Modelo implements Observer {
             quitarMotoPorId(id);
         }
     }
-
+    
+    
+    public void generarPDFSencillo(){
+        tienda.generarPdfSencillo();
+    }
+    
+    public void generarPDFDetallado(){
+        tienda.generarPdfDetallado();
+    }
 }

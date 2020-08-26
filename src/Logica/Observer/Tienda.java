@@ -19,8 +19,10 @@ import Logica.fabrica.farbicaMotocicleta;
 import database.UsuarioDB;
 import java.util.Iterator;
 import Logica.Decorator.Item;
+import Logica.Estrategia.GenerarContexto;
+import Logica.Estrategia.GenerarPDFDetallado;
+import Logica.Estrategia.GenerarPDFSencillo;
 //import com.sun.org.apache.xml.internal.security.encryption.AgreementMethod;
-
 /**
  *
  * @author thord
@@ -30,6 +32,7 @@ public class Tienda extends Sujeto {
     Usuario usuario;
     ArrayList<Motocicleta> catalogo;
     CarritoCompras carritoCompra;
+    GenerarPDFDetallado generarPdf;
 
     public Usuario getUsuario() {
         return usuario;
@@ -78,7 +81,21 @@ public class Tienda extends Sujeto {
             e.printStackTrace();
         }
     }
+    
+    public void generarPdfSencillo(){
+        Motocicleta moto = catalogo.get(2);
+        GenerarContexto nuevoPdf = new GenerarContexto(new GenerarPDFSencillo());
+        System.out.println("Cargando Catálogo sencillo en documento pdf");
+        nuevoPdf.ejecutar(catalogo);
 
+    } 
+    public void generarPdfDetallado(){
+        Motocicleta moto = catalogo.get(2);
+       GenerarContexto nuevoPdf = new GenerarContexto(new GenerarPDFDetallado());
+        System.out.println("Cargando Catálogo detallado en documento pdf");
+       nuevoPdf.ejecutar(catalogo);
+
+    } 
     /* public void agregarCasco() {
         Item pedido = new Pedido();
         pedido = new MotocicletaExploradoras(pedido);

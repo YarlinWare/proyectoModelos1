@@ -5,6 +5,9 @@
  */
 package Logica.Estrategia;
 
+import Logica.fabrica.Motocicleta;
+import java.util.ArrayList;
+
 /**
  *
  * @author ASUS
@@ -17,7 +20,8 @@ public class GenerarContexto {
         this.estrategia = estrategia;
     }
     
-    public void ejecutar(){
-        this.estrategia.generarDocumento();
+    public void ejecutar(ArrayList<Motocicleta> catalogo){
+        System.out.println("Ejecutando pdf");
+        this.estrategia.generarDocumento(catalogo);
     }
 }
