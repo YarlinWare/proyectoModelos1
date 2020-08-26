@@ -75,6 +75,9 @@ public class IniciarSesion extends javax.swing.JDialog {
     
     public void eventos(){
         jButtonIniciarSesion.addActionListener(getControl());
+        jTextFieldUsuario.addKeyListener(getControl());
+        jPasswordFieldPassword.addKeyListener(getControl());
+        this.addKeyListener(getControl());
     }
 
     /**

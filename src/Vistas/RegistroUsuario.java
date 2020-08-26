@@ -166,6 +166,12 @@ public class RegistroUsuario extends javax.swing.JDialog {
 
     public void eventos() {
         jButtonIniciarSesion.addActionListener(getControl());
+        jTextFieldCedula.addKeyListener(getControl());
+        jTextFieldCorreo.addKeyListener(getControl());
+        jTextFieldNombre.addKeyListener(getControl());
+        jTextFieldTelefono.addKeyListener(getControl());
+        jTextFieldUsuario.addKeyListener(getControl());
+        this.addKeyListener(getControl());
     }
 
     /**

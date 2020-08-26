@@ -7,8 +7,6 @@ package Logica.Observer;
 
 import Logica.CadenaDeResponsabilidad.Aprobacion;
 import Logica.CarritoCompras;
-import Logica.Decorator.MotocicletaExploradoras;
-import Logica.Decorator.MotocicletaMaletero;
 import Logica.Usuario;
 import Logica.fabrica.Motocicleta;
 import Logica.fabrica.MotocicletaElectrica;
@@ -21,12 +19,11 @@ import database.UsuarioDB;
 import java.util.Iterator;
 import Logica.Decorator.Item;
 import Logica.Estrategia.GenerarContexto;
+import Logica.Venta;
 import Vistas.Alert;
-import Vistas.VentanaCompra;
-import Logica.Estrategia.GenerarContexto;
 import Logica.Estrategia.GenerarPDFDetallado;
 import Logica.Estrategia.GenerarPDFSencillo;
-import Logica.Venta;
+import java.sql.SQLException;
 //import com.sun.org.apache.xml.internal.security.encryption.AgreementMethod;
 
 /**
@@ -76,7 +73,7 @@ public class Tienda extends Sujeto {
         try {
             ResultSet motos = daoMoto.getMoto();
             while (motos.next()) {
-                int id = Integer.parseInt(motos.getString("idmoto"));
+                String id = motos.getString("idmoto");
                 String titulo = motos.getString("linea");
                 String imagen = motos.getString("imagen");
                 String descripcion = motos.getString("descripcion");
@@ -92,24 +89,10 @@ public class Tienda extends Sujeto {
 
                 catalogo.add(nuevaMoto);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (NumberFormatException | SQLException e) {
         }
     }
 
-    /* public void agregarCasco() {
-        Item pedido = new Pedido();
-        pedido = new MotocicletaExploradoras(pedido);
-        System.out.println(pedido.getDescripcion());
-        System.out.println("Precio : " + pedido.getPrecio());
-    }*/
-
- /* public void agregarImpermeable() {
-        Item pedido = new Pedido();
-        pedido = new MotocicletaMaletero(pedido);
-        System.out.println(pedido.getDescripcion());
-        System.out.println("Precio : " + pedido.getPrecio());
-    }*/
     public void comprar() {
 
     }
@@ -166,11 +149,11 @@ public class Tienda extends Sujeto {
             }
             nuevaMoto.setCantidad(1);
             carritoCompra.agregarMotocicleta(nuevaMoto);
-            this.notificar();
             this.notificarUsuario();
+            this.notificar();
             return "true";
         } else {
-
+            this.notificar();
             return "null";
         }
 
@@ -178,12 +161,19 @@ public class Tienda extends Sujeto {
 
     public String quitarDelCarrito(String id) {
         if (usuario != null) {
-            carritoCompra.eliminarPorId(id);
-            this.notificar();
+            Motocicleta moto = carritoCompra.buscarMoto(id);
+            Motocicleta nuevaMoto = null;
+            if (moto instanceof MotocicletaElectrica) {
+                nuevaMoto = ((MotocicletaElectrica) moto).clone();
+            } else if (moto instanceof MotocicletaGasolina) {
+                nuevaMoto = ((MotocicletaGasolina) moto).clone();
+            }
+            carritoCompra.quitarMotocicleta(nuevaMoto);
             this.notificarUsuario();
+            this.notificar();
             return "true";
         } else {
-
+            this.notificar();
             return "null";
         }
     }
@@ -210,7 +200,7 @@ public class Tienda extends Sujeto {
     private Motocicleta buscarCatalogo(String id) {
         for (Iterator<Motocicleta> iterator = catalogo.iterator(); iterator.hasNext();) {
             Motocicleta next = iterator.next();
-            if (next.getId() == Integer.parseInt(id)) {
+            if (next.getId().equals(id)) {
                 return next;
             }
         }
@@ -222,35 +212,33 @@ public class Tienda extends Sujeto {
     }
 
     public void agregarExploradoras(String id) {
-        int x = 0;
-        ArrayList<Motocicleta> lista = carritoCompra.getLista();
-        for (Iterator<Motocicleta> iterator = lista.iterator(); iterator.hasNext();) {
-            Motocicleta Moto = iterator.next();
-            if (Moto.getId() == Integer.parseInt(id)) {
-                Moto = new MotocicletaExploradoras(Moto);
-                lista.set(x, Moto);
-                System.out.println("REEMPLAZANDO EXPLORADORA");
-            }
-            x++;
-        }
+        carritoCompra.agregarExploradoras(id);
         notificar();
 
     }
 
     public void agregarMaletero(String id) {
-        ArrayList<Motocicleta> lista = carritoCompra.getLista();
-        int x = 0;
-        for (Iterator<Motocicleta> iterator = lista.iterator(); iterator.hasNext();) {
-            Motocicleta Moto = iterator.next();
-            if (Moto.getId() == Integer.parseInt(id)) {
-                Moto = new MotocicletaMaletero(Moto);
-                lista.set(x, Moto);
-                System.out.println("REEMPLAZANDO MALETERO");
-            }
-            x++;
-        }
+        carritoCompra.agregarMaletero(id);
         notificar();
 
+    }
+
+    void backUp() {
+        int tamanio = carritoCompra.getTamanioBrackup();
+        if (tamanio > 0) {
+            carritoCompra.getBackup(tamanio - 1);
+            notificar();
+        } else {
+            System.out.println("Error se desborda el arreglo");
+        }
+
+    }
+
+    void eliminarMotoCarrito(String id) {
+        Motocicleta moto = carritoCompra.buscarMoto(id);
+        System.out.println("ID DE LA MOTO A ELIMINAR: "+ id);
+        carritoCompra.borrarMotocicleta(moto);
+        notificar();
     }
 
     public void generarPdfSencillo(){
@@ -267,4 +255,5 @@ public class Tienda extends Sujeto {
        nuevoPdf.ejecutar(catalogo);
 
     }
+
 }

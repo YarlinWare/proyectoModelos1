@@ -24,6 +24,4 @@ public class MotocicletaMaletero extends Motocicleta {
         return (getMoto().getTotal()) + (getMoto().getCantidad()* precioMaletero);
     }
 
-    
-
 }

@@ -48,6 +48,7 @@ public abstract class VistaMoto extends javax.swing.JPanel implements Cloneable 
     protected javax.swing.JPanel jPanel5;
     protected javax.swing.JPanel jPanel6;
     protected javax.swing.JSpinner jSpinnerCantidad;
+    protected javax.swing.JButton jButtonEliminar;
 
 
     protected Modelo modelo;
@@ -78,6 +79,7 @@ public abstract class VistaMoto extends javax.swing.JPanel implements Cloneable 
         jPanel6 = new javax.swing.JPanel();
         jCheckBoxCasco = new javax.swing.JCheckBox();
         jCheckBoxChaleco = new javax.swing.JCheckBox();
+        jButtonEliminar = new javax.swing.JButton();
         this.modelo = aThis;
         this.setSize(new Dimension(845, 200));
         
@@ -103,10 +105,13 @@ public abstract class VistaMoto extends javax.swing.JPanel implements Cloneable 
 
     public void setClassName() {
         jButtonAgregarAlCarrito.setName(getId() + "-jButtonAgregarAlCarrito");
+        jButtonEliminar.setName(getId() + "-jButtonEliminar");
         jButtonModificar.setName(getId() + "-jButtonModificar");
         jSpinnerCantidad.setName(getId() + "-snipper");
         jCheckBoxCasco.setName(getId()+"-checkBoxCasco");
         jCheckBoxChaleco.setName(getId()+"-checkBoxChaleco");
+        
+        
     }
 
     public void eventos() {
@@ -115,6 +120,7 @@ public abstract class VistaMoto extends javax.swing.JPanel implements Cloneable 
         jSpinnerCantidad.addChangeListener(modelo.getVentana().getControl());
         jCheckBoxCasco.addActionListener(modelo.getVentana().getControl());
         jCheckBoxChaleco.addActionListener(modelo.getVentana().getControl());
+        jButtonEliminar.addActionListener(modelo.getVentana().getControl());
     }
 
     public JCheckBox getjCheckBoxExploradoras() {

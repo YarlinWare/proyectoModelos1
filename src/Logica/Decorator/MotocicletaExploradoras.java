@@ -11,7 +11,7 @@ import Logica.fabrica.Motocicleta;
  *
  * @author Familia-PC
  */
-public class MotocicletaExploradoras extends Motocicleta {
+public class MotocicletaExploradoras extends Motocicleta implements Cloneable{
     private double precioExploradora;
     
     public MotocicletaExploradoras(Motocicleta moto) {
@@ -23,5 +23,7 @@ public class MotocicletaExploradoras extends Motocicleta {
     public double getTotal() {
         return (getMoto().getTotal()) + (getMoto().getCantidad()* precioExploradora);
     }
+    
+    
 
 }

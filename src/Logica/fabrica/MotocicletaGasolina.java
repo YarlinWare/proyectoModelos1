@@ -13,7 +13,7 @@ public class MotocicletaGasolina extends Motocicleta implements Cloneable {
 
     int cilindraje;
 
-    public MotocicletaGasolina(int id, String marca, String linea, String modelo, String color, int precio, String descipcion, int cilindraje, String imagen, int cantidad) {
+    public MotocicletaGasolina(String id, String marca, String linea, String modelo, String color, int precio, String descipcion, int cilindraje, String imagen, int cantidad) {
         super(id, marca, linea, modelo, descipcion, imagen, precio, cantidad);
         this.categoria = "Gasolina";
         this.cilindraje = cilindraje;

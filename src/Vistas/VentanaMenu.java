@@ -75,11 +75,13 @@ public final class VentanaMenu extends javax.swing.JFrame {
 
     public void eventos() {
         jButtonContinuar.addActionListener(getControl());
+        jButtonAtras.addActionListener(getControl());
         jMenuItemIniciarSesion.addActionListener(getControl());
         jMenuItemCerrarSesion.addActionListener(getControl());
         jMenuItemModificarCatalogo.addActionListener(getControl());
         jMenuItemSalirApp.addActionListener(getControl());
         jMenuItemRegistrarNuevoUsuario.addActionListener(getControl());
+        
     }
 
     public Modelo getModelo() {
@@ -101,14 +103,15 @@ public final class VentanaMenu extends javax.swing.JFrame {
         this.jButtonContinuar = jButtonContinuar;
     }
 
-    
-//    public JButton getjButtonComprar() {
-//        return jButtonContinuar;
-//    }
-//
-//    public void setjButtonComprar(JButton jButtonComprar) {
-//        this.jButtonContinuar = jButtonComprar;
-//    }
+    public JButton getjButtonAtras() {
+        return jButtonAtras;
+    }
+
+    public void setjButtonAtras(JButton jButtonAtras) {
+        this.jButtonAtras = jButtonAtras;
+    }
+
+
 
     public JMenuItem getjMenuItemCerrarSesion() {
         return jMenuItemCerrarSesion;
@@ -186,7 +189,6 @@ public final class VentanaMenu extends javax.swing.JFrame {
 
     
     
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -207,6 +209,7 @@ public final class VentanaMenu extends javax.swing.JFrame {
         jPanelCarritoCompra = new javax.swing.JPanel();
         jButtonContinuar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jButtonAtras = new javax.swing.JButton();
         jLEspacioCargo = new javax.swing.JLabel();
         jlabelCargo = new javax.swing.JLabel();
         jLabelEspacioNombre = new javax.swing.JLabel();
@@ -266,9 +269,9 @@ public final class VentanaMenu extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(296, 296, 296)
+                        .addGap(197, 197, 197)
                         .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
+                        .addGap(28, 28, 28)
                         .addComponent(jButtonSimple)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonDetallado)
@@ -318,6 +321,10 @@ public final class VentanaMenu extends javax.swing.JFrame {
 
         jLabel2.setText("CARRITO DE COMPRAS:");
 
+        jButtonAtras.setBackground(new java.awt.Color(255, 255, 0));
+        jButtonAtras.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
+        jButtonAtras.setText("←");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -331,16 +338,19 @@ public final class VentanaMenu extends javax.swing.JFrame {
                         .addComponent(jButtonContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonAtras)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jButtonAtras))
+                .addGap(2, 2, 2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonContinuar)
                 .addContainerGap())
@@ -433,6 +443,7 @@ public final class VentanaMenu extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAtras;
     private javax.swing.JButton jButtonContinuar;
     public javax.swing.JButton jButtonDetallado;
     public javax.swing.JButton jButtonSimple;

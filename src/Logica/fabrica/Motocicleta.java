@@ -13,7 +13,7 @@ import Logica.Decorator.Item;
  */
 public abstract class Motocicleta implements Cloneable, Item {
 
-    int id;
+    String id;
     String marca;
     String linea;
     String modelo;
@@ -49,7 +49,7 @@ public abstract class Motocicleta implements Cloneable, Item {
     //-----------------------------------------
 
     //FABRICA CONCRETA-------------------------
-    public Motocicleta(int id, String marca, String linea, String modelo, String descipcion, String imagen, double precio, int cantidad) {
+    public Motocicleta(String id, String marca, String linea, String modelo, String descipcion, String imagen, double precio, int cantidad) {
         this.id = id;
         this.marca = marca;
         this.linea = linea;
@@ -68,17 +68,15 @@ public abstract class Motocicleta implements Cloneable, Item {
         this.cantidad = cantidad;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-//    public double getTotal() {
-//        return total;
-//    }
+
     public void setTotal(double total) {
         this.total = total;
     }
