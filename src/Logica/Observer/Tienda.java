@@ -241,18 +241,18 @@ public class Tienda extends Sujeto {
         notificar();
     }
 
-    public void generarPdfSencillo(){
+    public void generarPdfSencillo(String liga){
         Motocicleta moto = catalogo.get(2);
         GenerarContexto nuevoPdf = new GenerarContexto(new GenerarPDFSencillo());
         System.out.println("Cargando Catálogo sencillo en documento pdf");
-        nuevoPdf.ejecutar(catalogo);
+        nuevoPdf.ejecutar(catalogo, liga);
 
     }
-    public void generarPdfDetallado(){
+    public void generarPdfDetallado(String liga){
         Motocicleta moto = catalogo.get(2);
        GenerarContexto nuevoPdf = new GenerarContexto(new GenerarPDFDetallado());
         System.out.println("Cargando Catálogo detallado en documento pdf");
-       nuevoPdf.ejecutar(catalogo);
+       nuevoPdf.ejecutar(catalogo, liga);
 
     }
 

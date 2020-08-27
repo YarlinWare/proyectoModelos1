@@ -35,25 +35,12 @@ import java.util.logging.Logger;
 public class GenerarPDFDetallado extends DocumentoDetallado{
 
     @Override
-    void generarDocumentoDetallado(ArrayList<Motocicleta> catalogo) {
+    void generarDocumentoDetallado(ArrayList<Motocicleta> catalogo, String liga) {
 
         System.out.println("Generar documento catalogo");
-//        
-//        List<Motos> listamotos = new ArrayList<Motos>();
-//        
-//        listamotos.add(new Motos(900, "Yamaha","FSZ","2021","Rojo"));
-//        listamotos.add(new Motos(900, "Yamaha","FSZ","2021","Azul"));        
-//        listamotos.add(new Motos(900, "Yamaha","FSZ","2021","Negro"));
-//        listamotos.add(new Motos(900, "Yamaha","FSZ","2021","Gris"));
-//        listamotos.add(new Motos(900, "Yamaha","FSZ","2021", "Verde"));
-//        
-//        System.out.println("Se encontraron "+listamotos.size()+" registros");
-//        
-//        MotosDB motosdb = new MotosDB();
-//        ResultSet res = null;
-//        
+   
         try {
-            crearPDF(catalogo);
+            crearPDF(catalogo, liga);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GenerarPDFSencillo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
@@ -64,7 +51,7 @@ public class GenerarPDFDetallado extends DocumentoDetallado{
 //        
     }
     
-    public static void crearPDF(ArrayList<Motocicleta> lista) throws FileNotFoundException, DocumentException, BadElementException, IOException {
+    public static void crearPDF(ArrayList<Motocicleta> lista,String liga) throws FileNotFoundException, DocumentException, BadElementException, IOException {
         // Se crea el documento
         Document documento = new Document();
         
@@ -74,7 +61,7 @@ public class GenerarPDFDetallado extends DocumentoDetallado{
         //Aquí obtienes el formato que deseas
         System.out.println(fecha.format(myDate));
         // El OutPutStream para el fichero donde crearemos el PDF
-        FileOutputStream ficheroPDF = new FileOutputStream("ListaMotosDetallado"+fecha.format(myDate)+".pdf");
+        FileOutputStream ficheroPDF = new FileOutputStream(liga+fecha.format(myDate)+".pdf");
         
         // Se asocia el documento de OutPutStream
         PdfWriter.getInstance(documento, ficheroPDF);
@@ -138,5 +125,7 @@ public class GenerarPDFDetallado extends DocumentoDetallado{
         documento.close();        
         System.out.println("Se realiza el cierre del documento");
     }
+
+    
   
 }

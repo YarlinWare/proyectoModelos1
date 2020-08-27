@@ -14,9 +14,9 @@ import java.util.ArrayList;
  */
 public abstract class DocumentoDetallado implements InterfaceStrategy{
     
-    public void generarDocumento(ArrayList<Motocicleta> catalogo){
-        generarDocumentoDetallado(catalogo);
+    public void generarDocumento(ArrayList<Motocicleta> catalogo, String liga){
+        generarDocumentoDetallado(catalogo, liga);
     }
     
-    abstract void generarDocumentoDetallado(ArrayList<Motocicleta> catalogo);
+    abstract void generarDocumentoDetallado(ArrayList<Motocicleta> catalogo, String liga);
 }

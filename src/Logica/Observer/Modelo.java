@@ -27,6 +27,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.BoxLayout;
 import Vistas.VentanaPedido;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 //import com.sun.org.apache.xml.internal.security.encryption.AgreementMethod;
@@ -60,6 +65,7 @@ public final class Modelo implements Observer {
         Modelo.OFFLINE = cargarImg("/img/offline.png", 20, 20);
 
     }
+
 
     public void agregarAlCarrito(String id) {
         String mensaje = tienda.agregarAlCarrito(id);
@@ -101,8 +107,6 @@ public final class Modelo implements Observer {
             System.out.println(user);
             if (usu != null) {
 
-//                String user = usu.getString("usuario");
-//                String clave = usu.getString("password");
                 if (usuario.equals(user)) {
                     String pass = "";
                     for (int i = 0; i < password.length; i++) {
@@ -157,7 +161,7 @@ public final class Modelo implements Observer {
             a.getjPanelTitulo().setPreferredSize(new Dimension(300, listaMotos.get(x).getLinea().length() / 2));
             a.getjLabelDescripcion().setText("<html>" + listaMotos.get(x).getDescripcion() + "</html>");
             a.getjPanelDescripcion().setPreferredSize(new Dimension(10, listaMotos.get(x).getDescripcion().length() / 2));
-            
+            a.getjButtonModificar().setVisible(false);
             try {
 
                 Image imagenInterna = new ImageIcon(getClass().
@@ -225,7 +229,7 @@ public final class Modelo implements Observer {
 
     public void VentanaCompra() {
         getVentanaPedido().setVisible(true);
-        
+
     }
 
     public void ventanaIniciarSesion() {
@@ -440,13 +444,13 @@ public final class Modelo implements Observer {
         System.out.println("VENTANA PEDIDO:" + getVentanaPedido());
         getVentanaPedido().getjTableMotosCompra().setModel(new DefaultTableModel(matrizInfo, titulos));
     }
-    
-    public void procesarCompra(){
+
+    public void procesarCompra() {
         tienda.procesarCompra();
-        if (tienda.procesarCompra()== true) {
-            Alert.mensaje(getVentanaPedido(), "Venta aprobada\n"+tienda.getVenta().getInfoAprobacion(), "Aprobacion", EXITO);
-        }else{
-            Alert.mensaje(getVentanaPedido(), "Venta no aprobada\n"+tienda.getVenta().getInfoAprobacion(), "Aprobacion", ERROR);
+        if (tienda.procesarCompra() == true) {
+            Alert.mensaje(getVentanaPedido(), "Venta aprobada\n" + tienda.getVenta().getInfoAprobacion(), "Aprobacion", EXITO);
+        } else {
+            Alert.mensaje(getVentanaPedido(), "Venta no aprobada\n" + tienda.getVenta().getInfoAprobacion(), "Aprobacion", ERROR);
         }
     }
 
@@ -457,13 +461,26 @@ public final class Modelo implements Observer {
     public void eliminarPorId(String id) {
         tienda.eliminarMotoCarrito(id);
     }
-    
-    public void generarPDFSencillo(){
-        tienda.generarPdfSencillo();
+
+    public void generarPDFSencillo() {
+        JFileChooser fileChooser = new JFileChooser();
+        int option = fileChooser.showSaveDialog(getVentana());
+        if (option == JFileChooser.APPROVE_OPTION) {
+            File f = fileChooser.getSelectedFile();
+            String liga = f.toString();
+            tienda.generarPdfSencillo(liga);
+        }
+
     }
-    
-    public void generarPDFDetallado(){
-        tienda.generarPdfDetallado();
+
+    public void generarPDFDetallado() {
+        JFileChooser fileChooser = new JFileChooser();
+        int option = fileChooser.showSaveDialog(getVentana());
+        if (option == JFileChooser.APPROVE_OPTION) {
+            File f = fileChooser.getSelectedFile();
+            String liga = f.toString();
+            tienda.generarPdfDetallado(liga);
+        }
     }
 
 }
