@@ -28,8 +28,6 @@ public class Controlador implements ActionListener, ChangeListener {
     public Controlador(VentanaMenu ventana) {
         this.ventana = ventana;
         this.modelo = ventana.getModelo();
-        this.ventana.jButtonSimple.addActionListener(this);
-        this.ventana.jButtonDetallado.addActionListener(this); 
         desactivarOpciones();
     }
 
@@ -49,6 +47,14 @@ public class Controlador implements ActionListener, ChangeListener {
             if (itemMenu == ventana.getjMenuItemCerrarSesion()) {
                 modelo.cerrarSesion();
             }
+            if (itemMenu == ventana.getjMenuItemCatalogoDetallado()) {
+                modelo.generarPDFDetallado();
+            }             
+            else if (itemMenu == ventana.getjMenuItemCatalogoSimple()
+                    ) {
+                modelo.generarPDFSencillo();
+            }
+            
         }
 
         if (e.getSource() instanceof JButton) {
@@ -58,11 +64,6 @@ public class Controlador implements ActionListener, ChangeListener {
                 modelo.VentanaCompra();
             } else if (boton == ventana.getjButtonAtras()) {
                 modelo.tiendaAtras();
-            }else if (boton == ventana.getjButtonDetallado()) {
-                modelo.generarPDFDetallado();
-            }             
-            else if (boton == ventana.getjButtonSimple()) {
-                modelo.generarPDFSencillo();
             } else {
                 String string = boton.getName();
                 String[] parts = string.split("-");
@@ -110,6 +111,7 @@ public class Controlador implements ActionListener, ChangeListener {
         ventana.getjLabelEspacioNombre().setVisible(false);
         ventana.getjLabelNombre().setVisible(false);
         ventana.getJlabelCargo().setVisible(false);
+        ventana.getjMenuItemRegistrarNuevoUsuario().setEnabled(false);
     }
 
     @Override

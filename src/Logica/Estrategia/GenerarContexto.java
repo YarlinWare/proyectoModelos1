@@ -20,8 +20,8 @@ public class GenerarContexto {
         this.estrategia = estrategia;
     }
     
-    public void ejecutar(ArrayList<Motocicleta> catalogo){
+    public void ejecutar(ArrayList<Motocicleta> catalogo, String liga){
         System.out.println("Ejecutando pdf");
-        this.estrategia.generarDocumento(catalogo);
+        this.estrategia.generarDocumento(catalogo, liga);
     }
 }

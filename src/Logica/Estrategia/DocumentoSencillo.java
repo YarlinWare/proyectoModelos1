@@ -15,10 +15,10 @@ import java.util.ArrayList;
 public abstract class DocumentoSencillo implements InterfaceStrategy{
     
     
-    public void generarDocumento(ArrayList<Motocicleta> catalogo){
+    public void generarDocumento(ArrayList<Motocicleta> catalogo, String liga){
         
-        generarDocumentoSencilloPDF(catalogo);
+        generarDocumentoSencilloPDF(catalogo, liga);
     }
     
-    abstract void generarDocumentoSencilloPDF(ArrayList<Motocicleta> catalogo);
+    abstract void generarDocumentoSencilloPDF(ArrayList<Motocicleta> catalogo,String liga);
 }

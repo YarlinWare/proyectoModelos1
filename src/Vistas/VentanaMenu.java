@@ -81,6 +81,8 @@ public final class VentanaMenu extends javax.swing.JFrame {
         jMenuItemModificarCatalogo.addActionListener(getControl());
         jMenuItemSalirApp.addActionListener(getControl());
         jMenuItemRegistrarNuevoUsuario.addActionListener(getControl());
+        jMenuItemCatalogoDetallado.addActionListener(getControl());
+        jMenuItemCatalogoSimple.addActionListener(getControl());
         
     }
 
@@ -98,6 +100,24 @@ public final class VentanaMenu extends javax.swing.JFrame {
     public JButton getjButtonContinuar() {
         return jButtonContinuar;
     }
+
+    public JMenuItem getjMenuItemCatalogoDetallado() {
+        return jMenuItemCatalogoDetallado;
+    }
+
+    public void setjMenuItemCatalogoDetallado(JMenuItem jMenuItemCatalogoDetallado) {
+        this.jMenuItemCatalogoDetallado = jMenuItemCatalogoDetallado;
+    }
+
+    public JMenuItem getjMenuItemCatalogoSimple() {
+        return jMenuItemCatalogoSimple;
+    }
+
+    public void setjMenuItemCatalogoSimple(JMenuItem jMenuItemCatalogoSimple) {
+        this.jMenuItemCatalogoSimple = jMenuItemCatalogoSimple;
+    }
+    
+    
 
     public void setjButtonContinuar(JButton jButtonContinuar) {
         this.jButtonContinuar = jButtonContinuar;
@@ -171,21 +191,9 @@ public final class VentanaMenu extends javax.swing.JFrame {
         this.jPanelCatalogo = jPanelCatalogo;
     }
 
-    public JButton getjButtonDetallado() {
-        return jButtonDetallado;
-    }
+   
 
-    public void setjButtonDetallado(JButton jButtonDetallado) {
-        this.jButtonDetallado = jButtonDetallado;
-    }
-
-    public JButton getjButtonSimple() {
-        return jButtonSimple;
-    }
-
-    public void setjButtonSimple(JButton jButtonSimple) {
-        this.jButtonSimple = jButtonSimple;
-    }
+    
 
     
     
@@ -196,14 +204,14 @@ public final class VentanaMenu extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
+        jMenuBar3 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanelCatalogo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButtonSimple = new javax.swing.JButton();
-        jButtonDetallado = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanelCarritoCompra = new javax.swing.JPanel();
@@ -221,6 +229,9 @@ public final class VentanaMenu extends javax.swing.JFrame {
         jMenuItemCerrarSesion = new javax.swing.JMenuItem();
         jMenuItemSalirApp = new javax.swing.JMenuItem();
         jMenuRegistrarNuevoUsuario = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
+        jMenuItemCatalogoSimple = new javax.swing.JMenuItem();
+        jMenuItemCatalogoDetallado = new javax.swing.JMenuItem();
         jMenuItemModificarCatalogo = new javax.swing.JMenuItem();
         jMenuItemRegistrarNuevoUsuario = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -230,6 +241,12 @@ public final class VentanaMenu extends javax.swing.JFrame {
 
         jMenu5.setText("Edit");
         jMenuBar2.add(jMenu5);
+
+        jMenu3.setText("File");
+        jMenuBar3.add(jMenu3);
+
+        jMenu6.setText("Edit");
+        jMenuBar3.add(jMenu6);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -253,12 +270,6 @@ public final class VentanaMenu extends javax.swing.JFrame {
 
         jLabel1.setText("CATALOGO...");
 
-        jLabel3.setText("Descargar catálogo");
-
-        jButtonSimple.setText("Simple");
-
-        jButtonDetallado.setText("Detallado");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -269,12 +280,6 @@ public final class VentanaMenu extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(197, 197, 197)
-                        .addComponent(jLabel3)
-                        .addGap(28, 28, 28)
-                        .addComponent(jButtonSimple)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonDetallado)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -282,13 +287,9 @@ public final class VentanaMenu extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jButtonSimple)
-                    .addComponent(jButtonDetallado))
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -383,6 +384,21 @@ public final class VentanaMenu extends javax.swing.JFrame {
 
         jMenuRegistrarNuevoUsuario.setText("Herramientas");
 
+        jMenu7.setText("Descargar catalogo");
+
+        jMenuItemCatalogoSimple.setText("Simple");
+        jMenu7.add(jMenuItemCatalogoSimple);
+
+        jMenuItemCatalogoDetallado.setText("Detallado");
+        jMenuItemCatalogoDetallado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCatalogoDetalladoActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItemCatalogoDetallado);
+
+        jMenuRegistrarNuevoUsuario.add(jMenu7);
+
         jMenuItemModificarCatalogo.setText("Modificar catalogo");
         jMenuRegistrarNuevoUsuario.add(jMenuItemModificarCatalogo);
 
@@ -441,25 +457,32 @@ public final class VentanaMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonContinuarActionPerformed
 
+    private void jMenuItemCatalogoDetalladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCatalogoDetalladoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemCatalogoDetalladoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAtras;
     private javax.swing.JButton jButtonContinuar;
-    public javax.swing.JButton jButtonDetallado;
-    public javax.swing.JButton jButtonSimple;
     private javax.swing.JLabel jLEspacioCargo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelEspacioNombre;
     private javax.swing.JLabel jLabelImagenEstado;
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuBar jMenuBar3;
+    private javax.swing.JMenuItem jMenuItemCatalogoDetallado;
+    private javax.swing.JMenuItem jMenuItemCatalogoSimple;
     private javax.swing.JMenuItem jMenuItemCerrarSesion;
     private javax.swing.JMenuItem jMenuItemIniciarSesion;
     private javax.swing.JMenuItem jMenuItemModificarCatalogo;

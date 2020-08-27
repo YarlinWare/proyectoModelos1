@@ -13,5 +13,5 @@ import java.util.ArrayList;
  * @author ASUS
  */
 public interface InterfaceStrategy {
-    void generarDocumento(ArrayList<Motocicleta> catalogo);
+    void generarDocumento(ArrayList<Motocicleta> catalogo, String liga);
 }
